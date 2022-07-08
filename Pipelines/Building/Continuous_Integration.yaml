@@ -1,0 +1,56 @@
+name: 1.0$(rev:.r) # build numbering format
+
+variables:
+  BuildConfiguration: "Release"
+  FolderToPublish: "Application"
+  PublishPath: "$(Build.ArtifactStagingDirectory)"
+  SolutionName: "AzureDevOpsReminderSystem.sln"
+  ReSharperSettingsFileName: "CISettings_NonNuGet.DotSettings"
+  ApplicationSubPath: "AzureDevOpsReminderSystem" # Use the Repository name here
+  TerraformPath: "Pipelines/Releasing/Terraform"
+
+resources:
+  repositories:
+    - repository: ALMStuff
+      type: github
+      name: DrMueller/ALMStuff
+      ref: refs/heads/master
+      endpoint: GitHub-DrMueller
+
+jobs:
+  - job: "BuildAndTest"
+    displayName: "Build and test"
+    pool:
+      name: Azure Pipelines
+      vmImage: windows-2019
+    steps:
+      - checkout: self
+      - checkout: ALMStuff
+      - template: AzureDevOps/BuildTemplates/NetCore/Steps/Initialize_And_Test.yaml@ALMStuff
+        parameters:
+          BuildConfiguration: $(BuildConfiguration)
+          SolutionName: $(SolutionName)
+          ApplicationSubPath: $(ApplicationSubPath)
+          ReSharperSettingsFileName: $(ReSharperSettingsFileName)
+  - job: "VerifyTerraform"
+    displayName: "Verify Terraform"
+    pool:
+      name: Azure Pipelines
+      vmImage: windows-2019
+    steps:
+      - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
+        displayName: "Install Terraform dependencies"
+      - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV2@2
+        displayName: "Terraform init"
+        inputs:
+          workingDirectory: $(TerraformPath)
+          backendServiceArm: TerraformConnection
+          backendAzureRmResourceGroupName: Matthias
+          backendAzureRmStorageAccountName: terraformstuff
+          backendAzureRmContainerName: terraformstuffblob
+          backendAzureRmKey: tf/terraform.tfstate
+      - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV2@2
+        displayName: "Terraform validate"
+        inputs:
+          command: validate
+          workingDirectory: $(TerraformPath)

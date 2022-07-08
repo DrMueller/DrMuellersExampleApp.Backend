@@ -1,0 +1,43 @@
+name: 1.0$(rev:.r) # build numbering format
+
+trigger: none # will disable CI builds entirely
+
+variables:
+  BuildConfiguration: "Release"
+  FolderToPublish: "Application"
+  PublishPath: "$(Build.ArtifactStagingDirectory)"
+  TerraformPath: "Pipelines/Releasing/Terraform"
+
+resources:
+  pipelines:
+    - pipeline: adrs-ci-pip # Name of the pipeline resource
+      source: 01-ADRS-Continuous-Integration # Name of the pipeline referenced by the pipeline resource
+      trigger:
+        branches:
+          - refs/heads/master
+
+jobs:
+  - job: "BuildAndPublishAsArtifact"
+    displayName: "Build and save zipped Artifact"
+    pool:
+      name: Azure Pipelines
+      vmImage: windows-2019
+    steps:
+      - task: DotNetCoreCLI@2
+        displayName: Publish
+        inputs:
+          command: publish
+          publishWebProjects: false
+          projects: "**/Sources/$(FolderToPublish)/*.csproj"
+          arguments: "--configuration $(BuildConfiguration) --output $(PublishPath)/App /p:DeleteExistingFiles=True"
+          zipAfterPublish: true
+          modifyOutputPath: false
+      - task: CopyFiles@2
+        displayName: "Copy Terraform files"
+        inputs:
+          SourceFolder: $(TerraformPath)
+          TargetFolder: $(PublishPath)/Terraform
+      - task: PublishBuildArtifacts@1
+        displayName: "Save Artifacts"
+        inputs:
+          PathtoPublish: "$(PublishPath)"

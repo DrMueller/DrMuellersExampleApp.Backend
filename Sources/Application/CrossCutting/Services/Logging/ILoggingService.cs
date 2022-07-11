@@ -1,4 +1,3 @@
-using System;
 using JetBrains.Annotations;
 
 namespace Mmu.CleanDddSimple.CrossCutting.Services.Logging

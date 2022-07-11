@@ -1,8 +1,5 @@
 using Lamar;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Mmu.CleanDddSimple.CrossCutting.Services.Settings.Config.Services;
 using Mmu.CleanDddSimple.Web.Infrastructure.Initialization;
 using Mmu.CleanDddSimple.Web.Infrastructure.Security;
@@ -11,12 +8,12 @@ namespace Mmu.CleanDddSimple
 {
     public class Startup
     {
+        private IConfiguration Configuration { get; }
+
         public Startup()
         {
             Configuration = ConfigurationFactory.Create();
         }
-
-        private IConfiguration Configuration { get; }
 
         public void Configure(IApplicationBuilder app)
         {

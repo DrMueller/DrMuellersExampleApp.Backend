@@ -1,4 +1,3 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
 using Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Maybes.Implementation;
 
@@ -29,27 +28,6 @@ namespace Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Maybes
         Justification = "It makes sense to keep these Classes together")]
     public abstract class Maybe<T> : IEquatable<Maybe<T>>, IEquatable<T>
     {
-        public abstract bool Equals(Maybe<T>? other);
-
-        public abstract bool Equals(T? other);
-
-        public override bool Equals(object? obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            return obj.GetType() == GetType() && Equals((Maybe<T>)obj);
-        }
-
-        public abstract override int GetHashCode();
-
         public static bool operator ==(Maybe<T>? a, Maybe<T>? b)
         {
             if (ReferenceEquals(null, a) && ReferenceEquals(null, b))
@@ -81,12 +59,6 @@ namespace Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Maybes
             return new None<T>();
         }
 
-        // ReSharper disable once UnusedMember.Global
-        public Maybe<T> ToMaybe()
-        {
-            return new None<T>();
-        }
-
         public static bool operator !=(Maybe<T> a, Maybe<T> b)
         {
             return !(a == b);
@@ -95,6 +67,33 @@ namespace Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Maybes
         public static bool operator !=(Maybe<T> a, T b)
         {
             return !(a == b!);
+        }
+
+        public abstract bool Equals(Maybe<T>? other);
+
+        public abstract bool Equals(T? other);
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            return obj.GetType() == GetType() && Equals((Maybe<T>)obj);
+        }
+
+        public abstract override int GetHashCode();
+
+        // ReSharper disable once UnusedMember.Global
+        public Maybe<T> ToMaybe()
+        {
+            return new None<T>();
         }
     }
 }

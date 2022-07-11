@@ -1,4 +1,3 @@
-using System;
 using System.Linq.Expressions;
 
 namespace Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Invariance.Servants

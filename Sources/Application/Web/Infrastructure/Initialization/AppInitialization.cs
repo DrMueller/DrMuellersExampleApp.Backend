@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Mmu.CleanDddSimple.Web.Infrastructure.ExceptionHandling.Initialization;
+﻿using Mmu.CleanDddSimple.Web.Infrastructure.ExceptionHandling.Initialization;
 
 namespace Mmu.CleanDddSimple.Web.Infrastructure.Initialization
 {

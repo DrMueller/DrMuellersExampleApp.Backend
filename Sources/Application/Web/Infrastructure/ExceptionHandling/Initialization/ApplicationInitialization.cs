@@ -1,5 +1,4 @@
 ﻿using JetBrains.Annotations;
-using Microsoft.AspNetCore.Builder;
 using Mmu.CleanDddSimple.Web.Infrastructure.ExceptionHandling.Middlewares;
 
 namespace Mmu.CleanDddSimple.Web.Infrastructure.ExceptionHandling.Initialization

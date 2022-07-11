@@ -1,56 +1,24 @@
-name: 1.0$(rev:.r) # build numbering format
+name: 1.1$(rev:.r) # build numbering format
 
 variables:
   BuildConfiguration: "Release"
-  FolderToPublish: "Application"
-  PublishPath: "$(Build.ArtifactStagingDirectory)"
-  SolutionName: "AzureDevOpsReminderSystem.sln"
-  ReSharperSettingsFileName: "CISettings_NonNuGet.DotSettings"
-  ApplicationSubPath: "AzureDevOpsReminderSystem" # Use the Repository name here
-  TerraformPath: "Pipelines/Releasing/Terraform"
-
-resources:
-  repositories:
-    - repository: ALMStuff
-      type: github
-      name: DrMueller/ALMStuff
-      ref: refs/heads/master
-      endpoint: GitHub-DrMueller
+  CsProjectPath: "Sources/Application/*.csproj"
 
 jobs:
-  - job: "BuildAndTest"
-    displayName: "Build and test"
+  - job: "BuildAndPublishToNuGet"
+    displayName: "Build and publish to NuGet"
     pool:
-      name: Azure Pipelines
-      vmImage: windows-2019
+      vmImage: "ubuntu-20.04"
     steps:
-      - checkout: self
-      - checkout: ALMStuff
-      - template: AzureDevOps/BuildTemplates/NetCore/Steps/Initialize_And_Test.yaml@ALMStuff
-        parameters:
-          BuildConfiguration: $(BuildConfiguration)
-          SolutionName: $(SolutionName)
-          ApplicationSubPath: $(ApplicationSubPath)
-          ReSharperSettingsFileName: $(ReSharperSettingsFileName)
-  - job: "VerifyTerraform"
-    displayName: "Verify Terraform"
-    pool:
-      name: Azure Pipelines
-      vmImage: windows-2019
-    steps:
-      - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
-        displayName: "Install Terraform dependencies"
-      - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV2@2
-        displayName: "Terraform init"
+      - task: DotNetCoreCLI@2
+        displayName: Restore
         inputs:
-          workingDirectory: $(TerraformPath)
-          backendServiceArm: TerraformConnection
-          backendAzureRmResourceGroupName: Matthias
-          backendAzureRmStorageAccountName: terraformstuff
-          backendAzureRmContainerName: terraformstuffblob
-          backendAzureRmKey: tf/terraform.tfstate
-      - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV2@2
-        displayName: "Terraform validate"
+          command: restore
+          projects: $(CsProjectPath)
+          vstsFeed: "3c2d9c9a-d8f7-42f4-b7a3-dddf4064110a"
+          verbosityRestore: Diagnostic
+      - task: DotNetCoreCLI@2
+        displayName: "Build with Warnings as Errors"
         inputs:
-          command: validate
-          workingDirectory: $(TerraformPath)
+          projects: $(CsProjectPath)
+          arguments: '/p:TreatWarningsAsErrors="true" --configuration $(BuildConfiguration)'

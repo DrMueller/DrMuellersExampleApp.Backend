@@ -35,10 +35,11 @@ namespace Mmu.CleanDddSimple.Web.Areas.ActionResults
 
         private static BadRequestObjectResult CreateBadRequest(ServerError err)
         {
-            return new BadRequestObjectResult(new ErrorDto
-            {
-                Message = err.ToDescription()
-            });
+            return new BadRequestObjectResult(
+                new ErrorDto
+                {
+                    Message = err.ToDescription()
+                });
         }
     }
 }

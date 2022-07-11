@@ -1,6 +1,3 @@
-using System;
-using Microsoft.Extensions.Logging;
-
 namespace Mmu.CleanDddSimple.CrossCutting.Services.Logging.Implementation
 {
     public class LoggingService : ILoggingService

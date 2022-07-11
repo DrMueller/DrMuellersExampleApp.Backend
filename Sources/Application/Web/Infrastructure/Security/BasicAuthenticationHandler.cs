@@ -1,13 +1,9 @@
-﻿using System;
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Mmu.CleanDddSimple.CrossCutting.Services.Settings.Provisioning.Services;
 
@@ -18,7 +14,6 @@ namespace Mmu.CleanDddSimple.Web.Infrastructure.Security
         public const string MissingHeaderError = "Missing Authorization Header";
         public const string SchemeName = "BasicAuthentication";
         public const string WrongCredentialsError = "Wrong credentials";
-
         private readonly IAppSettingsProvider _appSettingsProvider;
 
         public BasicAuthenticationHandler(
@@ -66,6 +61,7 @@ namespace Mmu.CleanDddSimple.Web.Infrastructure.Security
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, "Tmp"),
+                new Claim(ClaimTypes.Name, username)
             };
 
             var identity = new ClaimsIdentity(claims, Scheme.Name);

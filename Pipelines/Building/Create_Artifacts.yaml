@@ -1,43 +1,78 @@
-name: 1.0$(rev:.r) # build numbering format
+name: 1.1$(rev:.r) # build numbering format
 
 trigger: none # will disable CI builds entirely
 
 variables:
   BuildConfiguration: "Release"
-  FolderToPublish: "Application"
-  PublishPath: "$(Build.ArtifactStagingDirectory)"
-  TerraformPath: "Pipelines/Releasing/Terraform"
+  PublishPath: $(Build.Repository.LocalPath)/Pipelines/Building/DockerContent # used in Dockerfile
+  CsProjectPath: "Sources/Application/*.csproj"
 
 resources:
   pipelines:
-    - pipeline: adrs-ci-pip # Name of the pipeline resource
-      source: 01-ADRS-Continuous-Integration # Name of the pipeline referenced by the pipeline resource
+    - pipeline: EA-ci-pip # Name of the pipeline resource
+      source: 01-EA-Continuous-Integration # Name of the pipeline referenced by the pipeline resource
       trigger:
         branches:
           - refs/heads/master
-
 jobs:
-  - job: "BuildAndPublishAsArtifact"
-    displayName: "Build and save zipped Artifact"
+  - job: "BuildAndCreateImages"
+    displayName: "Build and create Images"
     pool:
-      name: Azure Pipelines
-      vmImage: windows-2019
+      vmImage: "ubuntu-20.04"
     steps:
+      - task: qetza.replacetokens.replacetokens-task.replacetokens@5
+        displayName: "Replace tokens in **/*.yaml"
+        inputs:
+          rootDirectory: "$(Build.SourcesDirectory)"
+          targetFiles: |
+            **/*.json
+            **/*.yaml
+          tokenPattern: rm
+          verbosity: detailed
+          keepToken: true
       - task: DotNetCoreCLI@2
         displayName: Publish
         inputs:
           command: publish
           publishWebProjects: false
-          projects: "**/Sources/$(FolderToPublish)/*.csproj"
-          arguments: "--configuration $(BuildConfiguration) --output $(PublishPath)/App /p:DeleteExistingFiles=True"
-          zipAfterPublish: true
+          projects: $(CsProjectPath)
+          arguments: "--configuration $(BuildConfiguration) --output $(PublishPath) /p:DeleteExistingFiles=True"
+          zipAfterPublish: false
           modifyOutputPath: false
-      - task: CopyFiles@2
-        displayName: "Copy Terraform files"
+      - task: YodLabs.VariableTasks.SetVariable.SetVariable@0
+        displayName: "Set Variable ImageName to $(Build.Repository.Name) with toLowerCase applied"
         inputs:
-          SourceFolder: $(TerraformPath)
-          TargetFolder: $(PublishPath)/Terraform
+          variableName: ImageName
+          value: "$(Build.Repository.Name)"
+          transform: toLowerCase
+      - task: YodLabs.VariableTasks.SetVariable.SetVariable@0
+        displayName: "Set Variable ImageName to $(ImageName) with replace applied"
+        inputs:
+          variableName: ImageName
+          value: "$(ImageName)"
+          transform: replace
+          searchValue: '\.'
+          newValue: "-"
+      - task: Docker@0
+        displayName: "Build Docker Image"
+        inputs:
+          buildContext: "Tra"
+          containerregistrytype: "Container Registry"
+          dockerRegistryConnection: DockerHub
+          imageName: "$(ImageName)"
+          additionalImageTags: "$(Build.BuildNumber)"
+          includeLatestTag: true
+          Dockerfile: Pipelines/Building/Dockerfile
+      - task: Docker@0
+        displayName: "Push Docker Image"
+        inputs:
+          containerregistrytype: "Container Registry"
+          dockerRegistryConnection: DockerHub
+          action: "Push an image"
+          imageName: "$(ImageName)"
+          additionalImageTags: "$(Build.BuildNumber)"
+          includeLatestTag: true
       - task: PublishBuildArtifacts@1
-        displayName: "Save Artifacts"
+        displayName: "Publish"
         inputs:
-          PathtoPublish: "$(PublishPath)"
+          PathtoPublish: "Pipelines/Releasing"

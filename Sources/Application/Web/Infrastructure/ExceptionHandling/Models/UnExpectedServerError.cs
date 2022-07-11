@@ -1,5 +1,4 @@
-﻿using System;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Invariance;
 
 namespace Mmu.CleanDddSimple.Web.Infrastructure.ExceptionHandling.Models
@@ -7,6 +6,10 @@ namespace Mmu.CleanDddSimple.Web.Infrastructure.ExceptionHandling.Models
     [PublicAPI]
     public class UnExpectedServerError
     {
+        public string Message { get; }
+        public string StackTrace { get; }
+        public string TypeName { get; }
+
         private UnExpectedServerError(string message, string typeName, string stackTrace)
         {
             Guard.StringNotNullOrEmpty(() => message);
@@ -16,10 +19,6 @@ namespace Mmu.CleanDddSimple.Web.Infrastructure.ExceptionHandling.Models
             TypeName = typeName;
             StackTrace = stackTrace;
         }
-
-        public string Message { get; }
-        public string StackTrace { get; }
-        public string TypeName { get; }
 
         public static UnExpectedServerError CreateFromException(Exception exception)
         {

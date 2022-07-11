@@ -1,4 +1,31 @@
 steps:
-  - template: StepTemplates/Initialize.yaml
-  - template: StepTemplates/Align_Resources.yaml
-  - template: StepTemplates/Release_App.yaml
+  - task: DownloadBuildArtifacts@1
+    displayName: "Download Build Artifacts"
+    inputs:
+      buildType: specific
+      project: "ba9fa09c-552b-4c7d-ac6c-65c3351012f4"
+      pipeline: 202
+      specificBuildWithTriggering: true
+      downloadPath: $(System.DefaultWorkingDirectory)
+  - task: HelmInstaller@1
+    displayName: "Install Helm"
+  - task: qetza.replacetokens.replacetokens-task.replacetokens@5
+    displayName: "Replace tokens"
+    inputs:
+      rootDirectory: "$(System.DefaultWorkingDirectory)/drop/helmakskubernetespoc-chart"
+      targetFiles: |
+        **/*.*
+      tokenPattern: rm
+      verbosity: detailed
+  - task: HelmDeploy@0
+    displayName: "helm upgrade"
+    inputs:
+      connectionType: "Kubernetes Service Connection"
+      kubernetesServiceConnection: '\HelmAksKubernetesPoc3'
+      command: upgrade
+      chartType: FilePath
+      chartPath: "$(System.DefaultWorkingDirectory)/drop/helmakskubernetespoc-chart"
+      releaseName: release
+      namespace: $(KubernetesNamespace)
+      waitForExecution: false
+      arguments: "--debug --create-namespace"

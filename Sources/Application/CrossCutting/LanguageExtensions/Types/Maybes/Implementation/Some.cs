@@ -9,6 +9,11 @@ namespace Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Maybes.Implem
             _content = content;
         }
 
+        public static implicit operator T(Some<T> value)
+        {
+            return value._content;
+        }
+
         public override bool Equals(Maybe<T>? other)
         {
             return Equals(other as Some<T>);
@@ -22,6 +27,12 @@ namespace Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Maybes.Implem
         public override int GetHashCode()
         {
             return _content!.GetHashCode();
+        }
+
+        // ReSharper disable once UnusedMember.Global
+        public T ToT(Some<T> value)
+        {
+            return value._content;
         }
 
         private bool ContentEquals(T? other)
@@ -43,17 +54,6 @@ namespace Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Maybes.Implem
         {
             return !ReferenceEquals(null, other) &&
                 ContentEquals(other._content);
-        }
-
-        public static implicit operator T(Some<T> value)
-        {
-            return value._content;
-        }
-
-        // ReSharper disable once UnusedMember.Global
-        public T ToT(Some<T> value)
-        {
-            return value._content;
         }
     }
 }

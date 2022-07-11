@@ -1,5 +1,3 @@
-using System;
-using Microsoft.Extensions.Configuration;
 using Mmu.CleanDddSimple.CrossCutting.Services.Settings.Provisioning.Models;
 
 namespace Mmu.CleanDddSimple.CrossCutting.Services.Settings.Config.Services

@@ -4,14 +4,14 @@ namespace Mmu.CleanDddSimple.CrossCutting.Errors.Implementation
 {
     public class GenericError : ServerError
     {
+        public string ErrorMessage { get; }
+
         public GenericError(string errorMessage)
         {
             Guard.StringNotNullOrEmpty(() => errorMessage);
 
             ErrorMessage = errorMessage;
         }
-
-        public string ErrorMessage { get; }
 
         public override string ToDescription()
         {

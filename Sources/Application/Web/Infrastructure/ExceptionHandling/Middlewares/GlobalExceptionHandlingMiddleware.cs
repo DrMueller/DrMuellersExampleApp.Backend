@@ -1,10 +1,7 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Mime;
-using System.Threading.Tasks;
 using JetBrains.Annotations;
-using Microsoft.AspNetCore.Http;
 using Mmu.CleanDddSimple.CrossCutting.Services.Logging;
 using Mmu.CleanDddSimple.Web.Infrastructure.ExceptionHandling.Models;
 using Newtonsoft.Json;

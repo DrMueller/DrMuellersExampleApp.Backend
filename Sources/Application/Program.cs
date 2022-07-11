@@ -1,7 +1,5 @@
 using JetBrains.Annotations;
 using Lamar.Microsoft.DependencyInjection;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 using NLog.Extensions.Logging;
 
 namespace Mmu.CleanDddSimple;

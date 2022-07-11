@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using Lamar;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Lamar;
 using Microsoft.OpenApi.Models;
 using Mmu.CleanDddSimple.CrossCutting.Services.Settings.Provisioning.Models;
 

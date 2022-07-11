@@ -12,7 +12,7 @@ steps:
   - task: qetza.replacetokens.replacetokens-task.replacetokens@5
     displayName: "Replace tokens"
     inputs:
-      rootDirectory: "$(System.DefaultWorkingDirectory)/drop/helmakskubernetespoc-chart"
+      rootDirectory: "$(System.DefaultWorkingDirectory)/drop/ea-chart"
       targetFiles: |
         **/*.*
       tokenPattern: rm
@@ -24,7 +24,7 @@ steps:
       kubernetesServiceConnection: '\HelmAksKubernetesPoc3'
       command: upgrade
       chartType: FilePath
-      chartPath: "$(System.DefaultWorkingDirectory)/drop/helmakskubernetespoc-chart"
+      chartPath: "$(System.DefaultWorkingDirectory)/drop/ea-chart"
       releaseName: release
       namespace: $(KubernetesNamespace)
       waitForExecution: false

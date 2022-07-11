@@ -13,11 +13,11 @@ pool:
   vmImage: "windows-2022"
 
 stages:
-  - stage: Development
+  - stage: Deployment
     displayName: "Deployment"
     jobs:
-      - deployment: "DeploymentDevelopment"
-        displayName: "Deployment Development"
+      - deployment: "Deployment"
+        displayName: "Deployment"
         environment: "DrMuellersExampleApp"
         variables:
           - group: DrMuellersExampleApp

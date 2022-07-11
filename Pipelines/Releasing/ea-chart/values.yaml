@@ -14,18 +14,6 @@ namespaces:
   development: "development"
   production: "production"
 
-envVariables:
-  - name: "AppSettings__Environment"
-    value: "__AppSettings.Environment__"
-  - name: "AppSettings__AppBasePath"
-    value: "__AppSettings.AppBasePath__"
-  - name: ConnectionStrings__DefaultConnection
-    valueFrom:
-      secretKeyRef:
-        name: mysecret
-        key: ConnectionStrings.DefaultConnection
-        optional: false
-
 serviceAccount:
   # Specifies whether a service account should be created
   create: true

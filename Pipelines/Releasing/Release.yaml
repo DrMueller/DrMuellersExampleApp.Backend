@@ -4,8 +4,8 @@ trigger: none
 
 resources:
   pipelines:
-    - pipeline: ea-create-artifacts-pip # Name of the pipeline resource
-      source: 02-EA-Create-Artifacts # Name of the pipeline referenced by the pipeline resource
+    - pipeline: eab-create-artifacts-pip # Name of the pipeline resource
+      source: 02-EAB-Create-Artifacts # Name of the pipeline referenced by the pipeline resource
       trigger: true
 
 pool:

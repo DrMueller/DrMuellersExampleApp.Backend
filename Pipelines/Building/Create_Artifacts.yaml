@@ -9,8 +9,8 @@ variables:
 
 resources:
   pipelines:
-    - pipeline: EA-ci-pip # Name of the pipeline resource
-      source: 01-EA-Continuous-Integration # Name of the pipeline referenced by the pipeline resource
+    - pipeline: eab-ci-pip # Name of the pipeline resource
+      source: 01-EAB-Continuous-Integration # Name of the pipeline referenced by the pipeline resource
       trigger:
         branches:
           - refs/heads/master

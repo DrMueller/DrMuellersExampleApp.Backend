@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "helmakskubernetespoc-chart.fullname" . }}
+  name: {{ include "ea-chart.fullname" . }}
   labels:
-    {{- include "helmakskubernetespoc-chart.labels" . | nindent 4 }}
+    {{- include "ea-chart.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "helmakskubernetespoc-chart.fullname" . }}
+    name: {{ include "ea-chart.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

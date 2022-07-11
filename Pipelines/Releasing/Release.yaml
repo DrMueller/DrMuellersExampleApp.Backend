@@ -4,43 +4,23 @@ trigger: none
 
 resources:
   pipelines:
-    - pipeline: hakp-create-artifacts-pip # Name of the pipeline resource
-      source: 02-HAKP-Create-Artifacts # Name of the pipeline referenced by the pipeline resource
+    - pipeline: ea-create-artifacts-pip # Name of the pipeline resource
+      source: 02-EA-Create-Artifacts # Name of the pipeline referenced by the pipeline resource
       trigger: true
 
 pool:
   name: Azure Pipelines
   vmImage: "windows-2022"
 
-variables:
-  - name: isMaster
-    value: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/master')]
-
 stages:
   - stage: Development
-    condition: eq(variables.isMaster, false)
-    displayName: "Development"
+    displayName: "Deployment"
     jobs:
       - deployment: "DeploymentDevelopment"
         displayName: "Deployment Development"
-        environment: "HelmAksKubernetesPoc"
+        environment: "DrMuellersExampleApp"
         variables:
-          - group: HelmAksKubernetesPoc-Dev
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - template: Release_Steps.yaml
-
-  - stage: Production
-    condition: eq(variables.isMaster, true)
-    displayName: "Production"
-    jobs:
-      - deployment: "DeploymentProduction"
-        displayName: "Deployment Production"
-        environment: "HelmAksKubernetesPoc"
-        variables:
-          - group: HelmAksKubernetesPoc-Prod
+          - group: DrMuellersExampleApp
         strategy:
           runOnce:
             deploy:

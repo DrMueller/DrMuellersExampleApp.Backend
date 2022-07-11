@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Maybes.Implementation
+namespace Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Types.Maybes.Implementation
 {
     [SuppressMessage(
         "Design",

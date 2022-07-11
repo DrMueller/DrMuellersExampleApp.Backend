@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Options;
-using Mmu.CleanDddSimple.CrossCutting.Services.Settings.Provisioning.Models;
+using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Models;
 
-namespace Mmu.CleanDddSimple.CrossCutting.Services.Settings.Provisioning.Services.Implementation
+namespace Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Services.Implementation
 {
     public class AppSettingsProvider : IAppSettingsProvider
     {

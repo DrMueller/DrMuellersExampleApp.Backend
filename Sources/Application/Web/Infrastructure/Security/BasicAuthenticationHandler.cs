@@ -5,9 +5,9 @@ using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
-using Mmu.CleanDddSimple.CrossCutting.Services.Settings.Provisioning.Services;
+using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Services;
 
-namespace Mmu.CleanDddSimple.Web.Infrastructure.Security
+namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.Security
 {
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {

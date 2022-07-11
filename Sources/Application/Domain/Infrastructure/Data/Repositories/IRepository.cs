@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
-using Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Maybes;
-using Mmu.CleanDddSimple.Domain.Models.Base;
+using Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Types.Maybes;
+using Mmu.DrMuellersExampleApp.Domain.Infrastructure.ModelBase;
 
-namespace Mmu.CleanDddSimple.Domain.Data.Repositories
+namespace Mmu.DrMuellersExampleApp.Domain.Infrastructure.Data.Repositories
 {
     [SuppressMessage("Design", "CA1040:Avoid empty interfaces", Justification = "Marker interface for easier generic handling")]
     public interface IRepository

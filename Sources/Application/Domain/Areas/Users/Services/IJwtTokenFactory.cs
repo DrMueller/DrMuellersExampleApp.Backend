@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace Mmu.Mls3.WebApi.Infrastructure.Security.Services
+namespace Mmu.DrMuellersExampleApp.Domain.Areas.Users.Services
 {
     public interface IJwtTokenFactory
     {

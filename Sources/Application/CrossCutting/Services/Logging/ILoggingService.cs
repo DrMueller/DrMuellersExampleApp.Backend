@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace Mmu.CleanDddSimple.CrossCutting.Services.Logging
+namespace Mmu.DrMuellersExampleApp.CrossCutting.Services.Logging
 {
     [PublicAPI]
     public interface ILoggingService

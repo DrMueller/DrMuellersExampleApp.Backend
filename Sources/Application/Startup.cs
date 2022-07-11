@@ -1,10 +1,10 @@
 using Lamar;
 using Microsoft.AspNetCore.Authentication;
-using Mmu.CleanDddSimple.CrossCutting.Services.Settings.Config.Services;
-using Mmu.CleanDddSimple.Web.Infrastructure.Initialization;
-using Mmu.CleanDddSimple.Web.Infrastructure.Security;
+using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Config.Services;
+using Mmu.DrMuellersExampleApp.Web.Infrastructure.Initialization;
+using Mmu.DrMuellersExampleApp.Web.Infrastructure.Security;
 
-namespace Mmu.CleanDddSimple
+namespace Mmu.DrMuellersExampleApp
 {
     public class Startup
     {

@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
-using Mmu.CleanDddSimple.Domain.Models.Base;
+using Mmu.DrMuellersExampleApp.Domain.Infrastructure.ModelBase;
 
-namespace Mmu.CleanDddSimple.Domain.Data.Repositories
+namespace Mmu.DrMuellersExampleApp.Domain.Infrastructure.Data.Repositories
 {
     public interface IAggregateSpecification<TAg>
         where TAg : IAggregateRoot

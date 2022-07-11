@@ -1,8 +1,8 @@
 using System.Linq.Expressions;
 using JetBrains.Annotations;
-using Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Invariance.Servants;
+using Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Invariance.Servants;
 
-namespace Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Invariance
+namespace Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Invariance
 {
     [PublicAPI]
     public static class Guard

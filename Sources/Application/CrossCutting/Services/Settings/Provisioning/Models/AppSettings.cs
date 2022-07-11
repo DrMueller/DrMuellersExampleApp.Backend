@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace Mmu.CleanDddSimple.CrossCutting.Services.Settings.Provisioning.Models
+namespace Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Models
 {
     [PublicAPI]
     public class AppSettings

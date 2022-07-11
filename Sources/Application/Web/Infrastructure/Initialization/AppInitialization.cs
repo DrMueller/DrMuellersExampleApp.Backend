@@ -1,6 +1,6 @@
-﻿using Mmu.CleanDddSimple.Web.Infrastructure.ExceptionHandling.Initialization;
+﻿using Mmu.DrMuellersExampleApp.Web.Infrastructure.ExceptionHandling.Initialization;
 
-namespace Mmu.CleanDddSimple.Web.Infrastructure.Initialization
+namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.Initialization
 {
     internal static class AppInitialization
     {

@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
-using Mmu.CleanDddSimple.Web.Infrastructure.ExceptionHandling.Middlewares;
+using Mmu.DrMuellersExampleApp.Web.Infrastructure.ExceptionHandling.Middlewares;
 
-namespace Mmu.CleanDddSimple.Web.Infrastructure.ExceptionHandling.Initialization
+namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.ExceptionHandling.Initialization
 {
     [PublicAPI]
     public static class ApplicationInitialization

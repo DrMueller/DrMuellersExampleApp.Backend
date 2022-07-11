@@ -1,6 +1,6 @@
-﻿using Mmu.CleanDddSimple.Application.Mediation.Models;
+﻿using Mmu.DrMuellersExampleApp.Application.Infrastructure.Mediation.Models;
 
-namespace Mmu.CleanDddSimple.Application.Mediation.Services
+namespace Mmu.DrMuellersExampleApp.Application.Infrastructure.Mediation.Services
 {
     public interface IMediationService
     {

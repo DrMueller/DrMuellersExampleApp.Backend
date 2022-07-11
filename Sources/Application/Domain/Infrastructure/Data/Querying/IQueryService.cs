@@ -1,6 +1,6 @@
-﻿using Mmu.CleanDddSimple.Domain.Models.Base;
+﻿using Mmu.DrMuellersExampleApp.Domain.Infrastructure.ModelBase;
 
-namespace Mmu.CleanDddSimple.Domain.Data.Querying
+namespace Mmu.DrMuellersExampleApp.Domain.Infrastructure.Data.Querying
 {
     public interface IQueryService
     {

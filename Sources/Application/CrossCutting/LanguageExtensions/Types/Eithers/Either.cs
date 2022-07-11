@@ -1,6 +1,6 @@
-using Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Eithers.Implementation;
+using Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Types.Eithers.Implementation;
 
-namespace Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Eithers
+namespace Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Types.Eithers
 {
     // We really just want the implicit convertion from object --> Either
     // The other way around we would need to know if the either is right or left, which we dont want

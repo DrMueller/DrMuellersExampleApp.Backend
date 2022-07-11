@@ -1,6 +1,6 @@
-using Mmu.CleanDddSimple.CrossCutting.Services.Settings.Provisioning.Models;
+using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Models;
 
-namespace Mmu.CleanDddSimple.CrossCutting.Services.Settings.Config.Services
+namespace Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Config.Services
 {
     public static class ConfigurationFactory
     {

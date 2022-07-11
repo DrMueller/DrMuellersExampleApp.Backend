@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
-using Mmu.CleanDddSimple.Domain.Models.Base.Technical;
+using Mmu.DrMuellersExampleApp.Domain.Infrastructure.ModelBase.Technical;
 
-namespace Mmu.CleanDddSimple.Domain.Models.Base
+namespace Mmu.DrMuellersExampleApp.Domain.Infrastructure.ModelBase
 {
     [PublicAPI]
     public abstract class Entity : IHasTimeStamps

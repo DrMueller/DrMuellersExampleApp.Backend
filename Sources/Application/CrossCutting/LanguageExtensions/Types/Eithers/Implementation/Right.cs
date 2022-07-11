@@ -1,4 +1,4 @@
-namespace Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Eithers.Implementation
+namespace Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Types.Eithers.Implementation
 {
     public class Right<TLeft, TRight> : Either<TLeft, TRight>
     {

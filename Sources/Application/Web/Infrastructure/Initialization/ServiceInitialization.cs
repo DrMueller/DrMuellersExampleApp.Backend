@@ -1,8 +1,8 @@
 ﻿using Lamar;
 using Microsoft.OpenApi.Models;
-using Mmu.CleanDddSimple.CrossCutting.Services.Settings.Provisioning.Models;
+using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Models;
 
-namespace Mmu.CleanDddSimple.Web.Infrastructure.Initialization
+namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.Initialization
 {
     internal static class ServiceInitialization
     {

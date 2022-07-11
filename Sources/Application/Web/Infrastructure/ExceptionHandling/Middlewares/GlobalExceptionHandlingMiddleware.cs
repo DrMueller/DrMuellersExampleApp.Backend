@@ -2,11 +2,11 @@
 using System.Net;
 using System.Net.Mime;
 using JetBrains.Annotations;
-using Mmu.CleanDddSimple.CrossCutting.Services.Logging;
-using Mmu.CleanDddSimple.Web.Infrastructure.ExceptionHandling.Models;
+using Mmu.DrMuellersExampleApp.CrossCutting.Services.Logging;
+using Mmu.DrMuellersExampleApp.Web.Infrastructure.ExceptionHandling.Models;
 using Newtonsoft.Json;
 
-namespace Mmu.CleanDddSimple.Web.Infrastructure.ExceptionHandling.Middlewares
+namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.ExceptionHandling.Middlewares
 {
     [PublicAPI]
     internal class GlobalExceptionHandlingMiddleware

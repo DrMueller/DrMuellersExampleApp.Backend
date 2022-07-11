@@ -1,4 +1,4 @@
-namespace Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Collections
+namespace Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Collections
 {
     public static class EnumerableExtensions
     {

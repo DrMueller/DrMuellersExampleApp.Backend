@@ -1,4 +1,4 @@
-﻿namespace Mmu.CleanDddSimple.Domain.Models.Base
+﻿namespace Mmu.DrMuellersExampleApp.Domain.Infrastructure.ModelBase
 {
     public abstract record ValueObject
 

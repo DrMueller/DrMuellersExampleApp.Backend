@@ -1,4 +1,4 @@
-namespace Mmu.CleanDddSimple.CrossCutting.Services.Logging.Implementation
+namespace Mmu.DrMuellersExampleApp.CrossCutting.Services.Logging.Implementation
 {
     public class LoggingService : ILoggingService
     {

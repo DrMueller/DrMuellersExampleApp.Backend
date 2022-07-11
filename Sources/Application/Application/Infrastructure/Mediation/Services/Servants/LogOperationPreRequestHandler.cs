@@ -1,8 +1,8 @@
 ﻿using JetBrains.Annotations;
 using MediatR.Pipeline;
-using Mmu.CleanDddSimple.CrossCutting.Services.Logging;
+using Mmu.DrMuellersExampleApp.CrossCutting.Services.Logging;
 
-namespace Mmu.CleanDddSimple.Application.Mediation.Services.Servants
+namespace Mmu.DrMuellersExampleApp.Application.Infrastructure.Mediation.Services.Servants
 {
     [UsedImplicitly]
     public class LogOperationPreRequestHandler<TRequest> : IRequestPreProcessor<TRequest>

@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Mmu.CleanDddSimple.CrossCutting.Errors;
-using Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Eithers;
-using Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Maybes;
-using Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Maybes.Implementation;
-using Mmu.CleanDddSimple.Web.Areas.Dtos.Base;
+using Mmu.DrMuellersExampleApp.CrossCutting.Errors;
+using Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Types.Eithers;
+using Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Types.Maybes;
+using Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Types.Maybes.Implementation;
+using Mmu.DrMuellersExampleApp.Web.Infrastructure.Dtos;
 
-namespace Mmu.CleanDddSimple.Web.Areas.ActionResults
+namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.ActionResults
 {
     public static class ActionResultAdapters
     {

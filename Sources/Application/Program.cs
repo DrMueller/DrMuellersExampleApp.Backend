@@ -2,7 +2,7 @@ using JetBrains.Annotations;
 using Lamar.Microsoft.DependencyInjection;
 using NLog.Extensions.Logging;
 
-namespace Mmu.CleanDddSimple;
+namespace Mmu.DrMuellersExampleApp;
 
 [PublicAPI]
 public static class Program

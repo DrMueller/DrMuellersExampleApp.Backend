@@ -1,4 +1,4 @@
-﻿using Mmu.CleanDddSimple.Application.Mediation.Models;
+﻿using Mmu.DrMuellersExampleApp.Application.Infrastructure.Mediation.Models;
 
 namespace Mmu.DrMuellersExampleApp.Application.Areas.Users.LogIn
 {

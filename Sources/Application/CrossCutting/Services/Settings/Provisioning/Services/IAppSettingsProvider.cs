@@ -1,6 +1,6 @@
-using Mmu.CleanDddSimple.CrossCutting.Services.Settings.Provisioning.Models;
+using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Models;
 
-namespace Mmu.CleanDddSimple.CrossCutting.Services.Settings.Provisioning.Services
+namespace Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Services
 {
     public interface IAppSettingsProvider
     {

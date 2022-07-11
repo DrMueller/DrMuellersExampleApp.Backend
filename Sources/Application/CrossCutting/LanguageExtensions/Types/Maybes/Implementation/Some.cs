@@ -1,4 +1,4 @@
-namespace Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Maybes.Implementation
+namespace Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Types.Maybes.Implementation
 {
     public class Some<T> : Maybe<T>
     {

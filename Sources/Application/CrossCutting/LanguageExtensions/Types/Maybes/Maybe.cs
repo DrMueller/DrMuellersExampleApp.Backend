@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
-using Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Maybes.Implementation;
+using Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Types.Maybes.Implementation;
 
-namespace Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Maybes
+namespace Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Types.Maybes
 {
     public static class Maybe
     {

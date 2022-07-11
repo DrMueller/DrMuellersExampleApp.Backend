@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 
-namespace Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Invariance.Servants
+namespace Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Invariance.Servants
 {
     internal static class ExpressionServant
     {

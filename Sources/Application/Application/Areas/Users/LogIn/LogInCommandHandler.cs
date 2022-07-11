@@ -1,26 +1,26 @@
 ﻿using System.Security.Claims;
 using MediatR;
-using Mmu.CleanDddSimple.CrossCutting.Services.Settings.Provisioning.Services;
-using Mmu.Mls3.WebApi.Infrastructure.Security.Services;
+using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Services;
+using Mmu.DrMuellersExampleApp.Domain.Areas.Users.Services;
 
 namespace Mmu.DrMuellersExampleApp.Application.Areas.Users.LogIn
 {
     public class LogInCommandHandler : IRequestHandler<LogInCommand, LoginResultDto>
     {
-        private readonly IAppSettingsProvider appSettingsProvider;
-        private readonly IJwtTokenFactory jwtTokenFactory;
+        private readonly IAppSettingsProvider _appSettingsProvider;
+        private readonly IJwtTokenFactory _jwtTokenFactory;
 
         public LogInCommandHandler(
             IJwtTokenFactory jwtTokenFactory,
             IAppSettingsProvider appSettingsProvider)
         {
-            this.jwtTokenFactory = jwtTokenFactory;
-            this.appSettingsProvider = appSettingsProvider;
+            this._jwtTokenFactory = jwtTokenFactory;
+            this._appSettingsProvider = appSettingsProvider;
         }
 
         public Task<LoginResultDto> Handle(LogInCommand request, CancellationToken cancellationToken)
         {
-            var secSettings = appSettingsProvider.Settings.SecuritySettings;
+            var secSettings = _appSettingsProvider.Settings.SecuritySettings;
             if (secSettings.Password != request.Request.Password || secSettings.UserName != request.Request.UserName)
             {
                 return Task.FromResult(
@@ -31,7 +31,7 @@ namespace Mmu.DrMuellersExampleApp.Application.Areas.Users.LogIn
             }
 
             var claims = new List<Claim> { new Claim(ClaimTypes.Name, request.Request.UserName) };
-            var token = jwtTokenFactory.CreateToken(claims);
+            var token = _jwtTokenFactory.CreateToken(claims);
 
             return Task.FromResult(
                 new LoginResultDto

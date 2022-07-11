@@ -1,6 +1,6 @@
-using Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Invariance;
+using Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Invariance;
 
-namespace Mmu.CleanDddSimple.CrossCutting.Errors.Implementation
+namespace Mmu.DrMuellersExampleApp.CrossCutting.Errors.Implementation
 {
     public class GenericError : ServerError
     {

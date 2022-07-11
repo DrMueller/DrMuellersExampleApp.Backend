@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace Mmu.CleanDddSimple.Web.Areas.Dtos.Base
+namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.Dtos
 {
     [PublicAPI]
     public class ErrorDto

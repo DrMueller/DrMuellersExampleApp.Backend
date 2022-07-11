@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
-using Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Invariance;
+using Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Invariance;
 
-namespace Mmu.CleanDddSimple.Web.Infrastructure.ExceptionHandling.Models
+namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.ExceptionHandling.Models
 {
     [PublicAPI]
     public class UnExpectedServerError

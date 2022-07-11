@@ -1,8 +1,8 @@
 using JetBrains.Annotations;
-using Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Eithers.Implementation;
-using Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Maybes;
+using Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Types.Eithers.Implementation;
+using Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Types.Maybes;
 
-namespace Mmu.CleanDddSimple.CrossCutting.LanguageExtensions.Types.Eithers
+namespace Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Types.Eithers
 {
     // Taken from https://app.pluralsight.com/course-player?clipId=99342073-37aa-4438-b61d-cf582553798b
     [PublicAPI]

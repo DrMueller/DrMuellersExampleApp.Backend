@@ -2,9 +2,9 @@
 using Lamar;
 using Lamar.Scanning.Conventions;
 using MediatR;
-using Mmu.CleanDddSimple.Domain.Models.Base;
+using Mmu.DrMuellersExampleApp.Domain.Infrastructure.ModelBase;
 
-namespace Mmu.CleanDddSimple.CrossCutting.DependencyInjection
+namespace Mmu.DrMuellersExampleApp.CrossCutting.DependencyInjection
 {
     [UsedImplicitly]
     public class RegistryCollection : ServiceRegistry

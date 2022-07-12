@@ -25,5 +25,12 @@ namespace Mmu.DrMuellersExampleApp.Web.Areas.Users.Controllers
 
             return Ok(loginResult);
         }
+
+        [HttpGet]
+        public IActionResult GetHello()
+        {
+            return Ok("Hello from Web API");
+        }
+
     }
 }

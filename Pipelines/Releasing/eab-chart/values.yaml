@@ -46,7 +46,6 @@ ingress:
   className: ""
   annotations:
     kubernetes.io/ingress.class: addon-http-application-routing # Use the HTTP application routing add-on
-    nginx.ingress.kubernetes.io/rewrite-target: /
 
   tls: []
   #  - secretName: chart-example-tls

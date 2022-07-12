@@ -6,6 +6,7 @@ namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.Initialization
     {
         internal static void InitializeApplication(IApplicationBuilder app)
         {
+            app.UsePathBase("/api");
             app.UseGlobalExceptionHandler();
             app.UseStaticFiles();
             app.UseSwagger();

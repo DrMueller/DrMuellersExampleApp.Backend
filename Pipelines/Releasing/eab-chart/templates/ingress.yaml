@@ -41,14 +41,14 @@ spec:
     - host: 09ab799fd5674c4594a5.centralus.aksapp.io
       http:
         paths:
-          - path: /
+          - path: /ea
             pathType: Prefix
             backend:
               service:
                 name: release-eaf-chartexternaldrmuellersexampleapp
                 port:
                   number: {{ .Values.externalService.port }}
-          - path: /api
+          - path: /ea/api
             pathType: Prefix
             backend:
               service:

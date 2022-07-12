@@ -1,5 +1,5 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "ea-chart.fullname" . -}}
+{{- $fullName := include "eab-chart.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
 {{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
   {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
@@ -18,7 +18,7 @@ metadata:
   name: {{ $fullName }}
   namespace: default
   labels:
-    {{- include "ea-chart.labels" . | nindent 4 }}
+    {{- include "eab-chart.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -45,14 +45,14 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{include "ea-chart.fullname" .}}external{{ .Values.namespaces.production }}
+                name: {{include "eab-chart.fullname" .}}external{{ .Values.namespaces.production }}
                 port:
                   number: {{ .Values.externalService.port }}
           - path: /dev
             pathType: Prefix
             backend:
               service:
-                name: {{ include "ea-chart.fullname" .}}external{{ .Values.namespaces.development }}
+                name: {{ include "eab-chart.fullname" .}}external{{ .Values.namespaces.development }}
                 port:
                   number: {{ .Values.externalService.port }}
 {{- end }}

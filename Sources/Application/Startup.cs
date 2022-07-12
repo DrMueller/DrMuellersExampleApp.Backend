@@ -29,9 +29,9 @@ namespace Mmu.DrMuellersExampleApp
         // We do this here in order to let test-web apis overwrite the securit
         protected virtual void ConfigureAuthentication(IServiceCollection services)
         {
-            services
-                .AddAuthentication(BasicAuthenticationHandler.SchemeName)
-                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>(BasicAuthenticationHandler.SchemeName, null);
+            //services
+            //    .AddAuthentication(BasicAuthenticationHandler.SchemeName)
+            //    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>(BasicAuthenticationHandler.SchemeName, null);
         }
     }
 }

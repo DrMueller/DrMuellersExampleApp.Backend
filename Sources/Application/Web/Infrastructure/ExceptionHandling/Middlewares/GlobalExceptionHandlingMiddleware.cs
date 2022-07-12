@@ -30,6 +30,7 @@ namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.ExceptionHandling.Middlewa
             }
             catch (Exception exception)
             {
+                Console.WriteLine(exception.ToString());
                 _loggingService.LogException(exception);
 
                 var response = httpContext.Response;

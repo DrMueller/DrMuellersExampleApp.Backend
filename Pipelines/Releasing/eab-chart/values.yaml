@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: drmueller/DrMuellersExampleApp
+  repository: drmueller/drmuellersexampleapp-backend
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "__Build.BuildNumber__"
@@ -9,10 +9,6 @@ image:
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-
-namespaces:
-  development: "development"
-  production: "production"
 
 serviceAccount:
   # Specifies whether a service account should be created

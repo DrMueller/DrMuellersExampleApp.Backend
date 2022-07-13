@@ -25,7 +25,7 @@ steps:
       command: upgrade
       chartType: FilePath
       chartPath: "$(System.DefaultWorkingDirectory)/drop/eab-chart"
-      releaseName: release
+      releaseName: releaseeab
       namespace: $(KubernetesNamespace)
       waitForExecution: false
       arguments: "--debug --create-namespace"

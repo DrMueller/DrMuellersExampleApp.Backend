@@ -1,4 +1,5 @@
 ﻿using Mmu.DrMuellersExampleApp.Web.Infrastructure.ExceptionHandling.Initialization;
+using Mmu.DrMuellersExampleApp.Web.Infrastructure.Output;
 
 namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.Initialization
 {
@@ -7,6 +8,7 @@ namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.Initialization
         internal static void InitializeApplication(IApplicationBuilder app)
         {
             //app.UsePathBase("/ea/api");
+            app.UseMiddleware<ConsoleOutputMiddleware>();
             app.UseGlobalExceptionHandler();
             app.UseStaticFiles();
             app.UseSwagger();
@@ -19,8 +21,8 @@ namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.Initialization
             app.UseCors("All");
             //app.UseHttpsRedirection();
             app.UseRouting();
-            app.UseAuthentication();
-            app.UseAuthorization();
+            //app.UseAuthentication();
+            //app.UseAuthorization();
             app.UseEndpoints(
                 endpoints =>
                 {

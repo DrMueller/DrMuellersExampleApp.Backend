@@ -5,7 +5,7 @@ using Mmu.DrMuellersExampleApp.Application.Infrastructure.Mediation.Services;
 
 namespace Mmu.DrMuellersExampleApp.Web.Areas.Users.Controllers
 {
-    [Route("api/users")]
+    [Route("users")]
     [ApiController]
     public class UsersController : ControllerBase
     {

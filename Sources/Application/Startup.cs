@@ -1,6 +1,8 @@
 using Lamar;
+using Microsoft.AspNetCore.Authentication;
 using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Config.Services;
 using Mmu.DrMuellersExampleApp.Web.Infrastructure.Initialization;
+using Mmu.DrMuellersExampleApp.Web.Infrastructure.Security;
 
 namespace Mmu.DrMuellersExampleApp
 {
@@ -27,9 +29,9 @@ namespace Mmu.DrMuellersExampleApp
         // We do this here in order to let test-web apis overwrite the securit
         protected virtual void ConfigureAuthentication(IServiceCollection services)
         {
-            //services
-            //    .AddAuthentication(BasicAuthenticationHandler.SchemeName)
-            //    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>(BasicAuthenticationHandler.SchemeName, null);
+            services
+                .AddAuthentication(BasicAuthenticationHandler.SchemeName)
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>(BasicAuthenticationHandler.SchemeName, null);
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Mmu.DrMuellersExampleApp.Web.Areas.HealthCheck
 {
+    [AllowAnonymous]
     [Route("")]
     [ApiController]
     public class HealthCheckController : ControllerBase

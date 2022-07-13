@@ -44,14 +44,14 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: release-eaf-chartexternaldrmuellersexampleapp
+                name: releaseeaf-eaf-chart
                 port:
                   number: {{ .Values.externalService.port }}
           - path: /ea/api
             pathType: Prefix
             backend:
               service:
-                name: release-eab-chartexternaldrmuellersexampleapp
+                name: releaseeab-eab-chart
                 port:
                   number: {{ .Values.externalService.port }}
 {{- end }}

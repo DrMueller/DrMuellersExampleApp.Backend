@@ -47,7 +47,7 @@ spec:
                 name: releaseeab-eab-chart
                 port:
                   number: {{ .Values.externalService.port }}
-          - path: /ea(/|$)(.*)
+          - path: /ea
             pathType: Prefix
             backend:
               service:

@@ -17,7 +17,7 @@ namespace Mmu.DrMuellersExampleApp
 
         public void Configure(IApplicationBuilder app)
         {
-            AppInitialization.InitializeApplication(app);
+            AppInitialization.InitializeApplication(app, Configuration);
         }
 
         public void ConfigureContainer(ServiceRegistry services)

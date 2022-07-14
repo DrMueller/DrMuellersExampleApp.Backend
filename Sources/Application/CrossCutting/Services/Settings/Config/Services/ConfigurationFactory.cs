@@ -18,6 +18,8 @@ namespace Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Config.Service
                 configBuilder.AddUserSecrets<AppSettings>();
             }
 
+            configBuilder.AddEnvironmentVariables();
+
             return configBuilder.Build();
         }
     }

@@ -1,13 +1,18 @@
-﻿using Mmu.DrMuellersExampleApp.Web.Infrastructure.ExceptionHandling.Initialization;
+﻿using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Models;
+using Mmu.DrMuellersExampleApp.Web.Infrastructure.ExceptionHandling.Initialization;
 using Mmu.DrMuellersExampleApp.Web.Infrastructure.Output;
 
 namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.Initialization
 {
     internal static class AppInitialization
     {
-        internal static void InitializeApplication(IApplicationBuilder app)
+        internal static void InitializeApplication(
+            IApplicationBuilder app,
+            IConfiguration configuration)
         {
-            app.UsePathBase("/ea/api");
+            var basePath = configuration.GetSection($"{AppSettings.SectionKey}:{nameof(AppSettings.AppBasePath)}").Get<string>();
+            app.UsePathBase(basePath);
+
             app.UseMiddleware<ConsoleOutputMiddleware>();
             app.UseGlobalExceptionHandler();
             app.UseStaticFiles();
@@ -15,7 +20,7 @@ namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.Initialization
             app.UseSwaggerUI(
                 config =>
                 {
-                    config.SwaggerEndpoint("/swagger/v1/swagger.json", "CleanArchitecture API");
+                    config.SwaggerEndpoint("/swagger/v1/swagger.json", "DrMuellersExampleApp API");
                 });
 
             app.UseCors("All");

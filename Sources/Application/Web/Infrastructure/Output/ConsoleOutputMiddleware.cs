@@ -4,7 +4,7 @@
     {
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-            Console.WriteLine(context.Request.Path);
+            Console.WriteLine($"{DateTime.Now.ToLongTimeString()}: {context.Request.Path}");
 
             await next(context);
         }

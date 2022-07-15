@@ -54,17 +54,7 @@ spec:
                 name: releaseeaf-eaf-chart
                 port:
                   number: {{ .Values.externalService.port }}
-    - host: ea.09ab799fd5674c4594a5.centralus.aksapp.io
-      http:
-        paths:
-          - path: /ea/api
-            pathType: Prefix
-            backend:
-              service:
-                name: releaseeab-eab-chart
-                port:
-                  number: {{ .Values.externalService.port }}
-          - path: /ea
+          - path: /
             pathType: Prefix
             backend:
               service:

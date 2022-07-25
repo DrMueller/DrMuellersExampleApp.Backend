@@ -27,7 +27,7 @@ namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.Initialization
             app.UseSwaggerUI(
                 config =>
                 {
-                    config.SwaggerEndpoint("/swagger/v1/swagger.json", "DrMuellersExampleApp API");
+                    config.SwaggerEndpoint($"{basePath}/swagger/v1/swagger.json", "DrMuellersExampleApp API");
                 });
 
             app.UseCors("All");

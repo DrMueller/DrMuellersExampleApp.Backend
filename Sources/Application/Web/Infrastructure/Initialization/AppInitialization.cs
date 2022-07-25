@@ -1,4 +1,5 @@
-﻿using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Models;
+﻿using Microsoft.Extensions.FileProviders;
+using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Models;
 using Mmu.DrMuellersExampleApp.Web.Infrastructure.ExceptionHandling.Initialization;
 using Mmu.DrMuellersExampleApp.Web.Infrastructure.Output;
 
@@ -17,7 +18,13 @@ namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.Initialization
 
             app.UseMiddleware<ConsoleOutputMiddleware>();
             app.UseGlobalExceptionHandler();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                RequestPath = "/api"
+            });
+
             app.UseStaticFiles();
+
             app.UseSwagger();
             app.UseSwaggerUI(
                 config =>

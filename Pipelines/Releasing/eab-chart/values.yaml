@@ -13,12 +13,12 @@ fullnameOverride: ""
 envVariables:
   - name: "AppSettings__AppBasePath"
     value: "__AppSettings.AppBasePath__"
-  - name: "AppSettings.SecuritySettings.UserName"
-    value: "__AppSettings.SecuritySettings.UserName__"
-  - name: "AppSettings.SecuritySettings.Password"
-    value: "__AppSettings.SecuritySettings.Password__"
-  - name: "SecuritySettings__TRA__Password"
-    value: "__AppSettings.SecuritySettings.Password__"
+  - name: "AppSettings__ApiUserName"
+    value: "__AppSettings.ApiUserName__"
+  - name: "AppSettings__ApiPassword"
+    value: "__AppSettings.ApiPassword__"
+  - name: "AppSettings__SecretKey"
+    value: "__AppSettings.SecretKey__"
 
 serviceAccount:
   # Specifies whether a service account should be created

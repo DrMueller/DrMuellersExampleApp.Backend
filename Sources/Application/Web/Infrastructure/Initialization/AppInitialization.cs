@@ -23,8 +23,6 @@ namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.Initialization
                 RequestPath = "/api"
             });
 
-            app.UseStaticFiles();
-
             app.UseSwagger();
             app.UseSwaggerUI(
                 config =>

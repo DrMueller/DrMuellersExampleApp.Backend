@@ -20,8 +20,8 @@ namespace Mmu.DrMuellersExampleApp.Application.Areas.Users.LogIn
 
         public Task<LoginResultDto> Handle(LogInCommand request, CancellationToken cancellationToken)
         {
-            var secSettings = _appSettingsProvider.Settings.SecuritySettings;
-            if (secSettings.Password != request.Request.Password || secSettings.UserName != request.Request.UserName)
+            var appSettings = _appSettingsProvider.Settings;
+            if (appSettings.ApiPassword != request.Request.Password || appSettings.ApiUserName != request.Request.UserName)
             {
                 return Task.FromResult(
                     new LoginResultDto

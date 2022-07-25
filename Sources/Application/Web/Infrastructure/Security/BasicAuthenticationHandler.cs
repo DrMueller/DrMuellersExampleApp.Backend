@@ -53,7 +53,7 @@ namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.Security
             var username = credentials[0];
             var password = credentials[1];
 
-            if (username != _appSettingsProvider.Settings.SecuritySettings.UserName || password != _appSettingsProvider.Settings.SecuritySettings.Password)
+            if (username != _appSettingsProvider.Settings.ApiUserName || password != _appSettingsProvider.Settings.ApiPassword)
             {
                 return Task.FromResult(AuthenticateResult.Fail(WrongCredentialsError));
             }

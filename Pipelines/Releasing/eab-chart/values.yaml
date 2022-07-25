@@ -13,11 +13,11 @@ fullnameOverride: ""
 envVariables:
   - name: "AppSettings__AppBasePath"
     value: "__AppSettings.AppBasePath__"
-  - name: "AppSettings__SecuritySettings__UserName"
+  - name: "AppSettings.SecuritySettings.UserName"
     value: "__AppSettings.SecuritySettings.UserName__"
-  - name: "AppSettings__SecuritySettings__Password"
+  - name: "AppSettings.SecuritySettings.Password"
     value: "__AppSettings.SecuritySettings.Password__"
-  - name: "SecuritySettings__Password"
+  - name: "SecuritySettings__TRA__Password"
     value: "__AppSettings.SecuritySettings.Password__"
 
 serviceAccount:

@@ -17,6 +17,8 @@ envVariables:
     value: "__AppSettings.SecuritySettings.UserName__"
   - name: "AppSettings__SecuritySettings__Password"
     value: "__AppSettings.SecuritySettings.Password__"
+  - name: "SecuritySettings__Password"
+    value: "__AppSettings.SecuritySettings.Password__"
 
 serviceAccount:
   # Specifies whether a service account should be created

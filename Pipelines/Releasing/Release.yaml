@@ -20,7 +20,8 @@ stages:
         displayName: "Deployment"
         environment: "DrMuellersExampleApp"
         variables:
-          - group: DrMuellersExampleApp
+          - group: DrMuellersExampleApp-Common
+          - group: DrMuellersExampleApp-Backend
         strategy:
           runOnce:
             deploy:

@@ -14,8 +14,8 @@ namespace Mmu.DrMuellersExampleApp.Application.Areas.Users.LogIn
             IJwtTokenFactory jwtTokenFactory,
             IAppSettingsProvider appSettingsProvider)
         {
-            this._jwtTokenFactory = jwtTokenFactory;
-            this._appSettingsProvider = appSettingsProvider;
+            _jwtTokenFactory = jwtTokenFactory;
+            _appSettingsProvider = appSettingsProvider;
         }
 
         public Task<LoginResultDto> Handle(LogInCommand request, CancellationToken cancellationToken)

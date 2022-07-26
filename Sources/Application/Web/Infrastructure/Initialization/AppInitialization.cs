@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.FileProviders;
-using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Models;
+﻿using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Models;
 using Mmu.DrMuellersExampleApp.Web.Infrastructure.ExceptionHandling.Initialization;
 using Mmu.DrMuellersExampleApp.Web.Infrastructure.Output;
 

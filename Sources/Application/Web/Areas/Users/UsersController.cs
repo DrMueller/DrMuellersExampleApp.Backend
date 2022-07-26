@@ -17,6 +17,12 @@ namespace Mmu.DrMuellersExampleApp.Web.Areas.Users
             _mediator = mediator;
         }
 
+        [HttpGet]
+        public IActionResult GetHello()
+        {
+            return Ok("Hello from Web API");
+        }
+
         [HttpPost("login")]
         [AllowAnonymous]
         public async Task<ActionResult<LoginResultDto>> LoginAsync([FromBody] LoginRequestDto requestDto)
@@ -25,12 +31,5 @@ namespace Mmu.DrMuellersExampleApp.Web.Areas.Users
 
             return Ok(loginResult);
         }
-
-        [HttpGet]
-        public IActionResult GetHello()
-        {
-            return Ok("Hello from Web API");
-        }
-
     }
 }

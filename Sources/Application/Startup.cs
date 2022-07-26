@@ -1,6 +1,5 @@
 using System.Text;
 using Lamar;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Config.Services;
@@ -44,7 +43,9 @@ namespace Mmu.DrMuellersExampleApp
                     {
                         x.RequireHttpsMetadata = false;
                         x.SaveToken = true;
+#pragma warning disable CA5404 // Do not disable token validation checks
                         x.TokenValidationParameters = new TokenValidationParameters { ValidateIssuerSigningKey = true, IssuerSigningKey = new SymmetricSecurityKey(key), ValidateIssuer = false, ValidateAudience = false };
+#pragma warning restore CA5404 // Do not disable token validation checks
                     });
         }
     }

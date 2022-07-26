@@ -30,7 +30,13 @@ namespace Mmu.DrMuellersExampleApp.Application.Areas.Users.LogIn
                     });
             }
 
-            var claims = new List<Claim> { new Claim(ClaimTypes.Name, request.Request.UserName) };
+            var claims = new List<Claim>
+            {
+                new(ClaimTypes.Name, request.Request.UserName),
+                new(ClaimTypes.Expiration, DateTime.Now.AddYears(1).ToShortDateString()),
+                new(ClaimTypes.PostalCode, "1715")
+            };
+            
             var token = _jwtTokenFactory.CreateToken(claims);
 
             return Task.FromResult(

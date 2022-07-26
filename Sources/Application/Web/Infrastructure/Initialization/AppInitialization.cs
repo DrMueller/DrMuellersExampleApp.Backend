@@ -18,11 +18,6 @@ namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.Initialization
 
             app.UseMiddleware<ConsoleOutputMiddleware>();
             app.UseGlobalExceptionHandler();
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                RequestPath = "/api"
-            });
-
             app.UseSwagger();
             app.UseSwaggerUI(
                 config =>

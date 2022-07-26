@@ -1,4 +1,7 @@
-﻿using Lamar;
+﻿using System.Text;
+using Lamar;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Models;
 

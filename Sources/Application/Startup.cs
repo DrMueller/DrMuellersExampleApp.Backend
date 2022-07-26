@@ -1,8 +1,10 @@
+using System.Text;
 using Lamar;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Config.Services;
 using Mmu.DrMuellersExampleApp.Web.Infrastructure.Initialization;
-using Mmu.DrMuellersExampleApp.Web.Infrastructure.Security;
 
 namespace Mmu.DrMuellersExampleApp
 {
@@ -29,9 +31,21 @@ namespace Mmu.DrMuellersExampleApp
         // We do this here in order to let test-web apis overwrite the securit
         protected virtual void ConfigureAuthentication(IServiceCollection services)
         {
-            services
-                .AddAuthentication(BasicAuthenticationHandler.SchemeName)
-                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>(BasicAuthenticationHandler.SchemeName, null);
+            var secretKey = Configuration.GetValue<string>("AppSettings:SecretKey");
+            var key = Encoding.ASCII.GetBytes(secretKey);
+            services.AddAuthentication(
+                    x =>
+                    {
+                        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                    })
+                .AddJwtBearer(
+                    x =>
+                    {
+                        x.RequireHttpsMetadata = false;
+                        x.SaveToken = true;
+                        x.TokenValidationParameters = new TokenValidationParameters { ValidateIssuerSigningKey = true, IssuerSigningKey = new SymmetricSecurityKey(key), ValidateIssuer = false, ValidateAudience = false };
+                    });
         }
     }
 }

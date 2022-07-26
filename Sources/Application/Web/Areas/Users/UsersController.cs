@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Mmu.DrMuellersExampleApp.Application.Areas.Users.LogIn;
 using Mmu.DrMuellersExampleApp.Application.Infrastructure.Mediation.Services;
 
-namespace Mmu.DrMuellersExampleApp.Web.Areas.Users.Controllers
+namespace Mmu.DrMuellersExampleApp.Web.Areas.Users
 {
     [Route("users")]
     [ApiController]

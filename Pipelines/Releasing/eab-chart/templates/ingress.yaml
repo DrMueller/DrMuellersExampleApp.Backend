@@ -37,7 +37,7 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    - host: 09ab799fd5674c4594a5.centralus.aksapp.io
+    - host: http://muellermatthias.org/
       http:
         paths:
           - path: /api

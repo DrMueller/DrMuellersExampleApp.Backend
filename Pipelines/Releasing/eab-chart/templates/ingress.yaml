@@ -37,7 +37,7 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    - host: http://muellermatthias.org/
+    - host: muellermatthias.org
       http:
         paths:
           - path: /api

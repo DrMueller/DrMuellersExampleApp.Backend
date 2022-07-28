@@ -55,21 +55,4 @@ spec:
                 port:
                   number: {{ .Values.externalService.port }}
 
-    - host: *
-      http:
-        paths:
-          - path: /api
-            pathType: Prefix
-            backend:
-              service:
-                name: releaseeab-eab-chart
-                port:
-                  number: {{ .Values.externalService.port }}
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: releaseeaf-eaf-chart
-                port:
-                  number: {{ .Values.externalService.port }}
 {{- end }}

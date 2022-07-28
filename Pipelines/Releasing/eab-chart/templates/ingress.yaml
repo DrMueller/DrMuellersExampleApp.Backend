@@ -55,7 +55,7 @@ spec:
                 port:
                   number: {{ .Values.externalService.port }}
 
-    - host: 20.221.106.186
+    - host: *
       http:
         paths:
           - path: /api

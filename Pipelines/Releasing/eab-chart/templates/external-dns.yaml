@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "eab-chart.fullname" .}}external-dns
   labels:
-    {{- include "eab-chart.fullname" . | nindent 4 }}
+    {{- include "eab-chart.labels" . | nindent 4 }}
 spec:
   strategy:
     type: Recreate

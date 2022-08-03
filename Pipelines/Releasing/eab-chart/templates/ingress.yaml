@@ -37,7 +37,7 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    - host: muellermatthias.org
+    - host: www.muellermatthias.org
       http:
         paths:
           - path: /api
@@ -55,21 +55,4 @@ spec:
                 port:
                   number: {{ .Values.externalService.port }}
 
-    - host: 09ab799fd5674c4594a5.centralus.aksapp.io
-      http:
-        paths:
-          - path: /api
-            pathType: Prefix
-            backend:
-              service:
-                name: releaseeab-eab-chart
-                port:
-                  number: {{ .Values.externalService.port }}
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: releaseeaf-eaf-chart
-                port:
-                  number: {{ .Values.externalService.port }}
 {{- end }}

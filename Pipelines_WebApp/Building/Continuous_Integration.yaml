@@ -42,6 +42,7 @@ jobs:
 
   - job: "RunResharper"
     displayName: "Run ReSharper analysis"
+    dependsOn: BuildAndTest
     pool:
       name: Azure Pipelines
       vmImage: windows-latest

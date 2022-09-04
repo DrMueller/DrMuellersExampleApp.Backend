@@ -11,12 +11,16 @@ resources:
 pool:
   name: Azure Pipelines
   vmImage: windows-latest
+  
+variables:
+- group: DrMuellersExampleApp-WebApp-Backend
 
 stages:
   - stage: Production
     displayName: "Production"
     jobs:
       - deployment: "DeploymentProduction"
+        environment: "DrMuellersExampleApp-WebApp-Backend"
         displayName: "Deployment Production"
         strategy:
           runOnce:

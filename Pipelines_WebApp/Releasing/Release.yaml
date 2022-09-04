@@ -1,0 +1,33 @@
+name: 1.0$(rev:.r) # build numbering format
+
+trigger: none
+
+resources:
+  pipelines:
+    - pipeline: eabwebapp-release-pip # Name of the pipeline resource
+      source: 02-EABWebApp-Create-Artifacts # Name of the pipeline referenced by the pipeline resource
+      trigger: true
+
+pool:
+  name: Azure Pipelines
+  vmImage: windows-latest
+
+stages:
+  - stage: Production
+    displayName: "Production"
+    jobs:
+      - deployment: "DeploymentProduction"
+        displayName: "Deployment Production"
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+              - task: DownloadBuildArtifacts@1
+                displayName: "Download Build Artifacts"
+                inputs:
+                  buildType: specific
+                  project: "ba9fa09c-552b-4c7d-ac6c-65c3351012f4"
+                  definition: 179
+                  specificBuildWithTriggering: true
+                  downloadPath: $(System.DefaultWorkingDirectory)
+

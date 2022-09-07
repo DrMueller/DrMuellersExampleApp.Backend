@@ -40,5 +40,5 @@ stages:
                   azureSubscription: '05b34a60-79e8-4b91-ac72-afb66d4551c9'
                   appType: 'webApp'
                   WebAppName: 'DrMuellersExampleAppBackend'
-                  packageForLinux: '$(System.DefafultWorkingDirectory)/**/*.zip'
+                  packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
                   JSONFiles: '**/*.json'

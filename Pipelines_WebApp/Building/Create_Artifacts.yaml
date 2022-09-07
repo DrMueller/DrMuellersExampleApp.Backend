@@ -5,6 +5,7 @@ trigger: none # will disable CI builds entirely
 variables:
   BuildConfiguration: "Release"
   PublishPath: "$(Build.ArtifactStagingDirectory)/App"
+  ArchiveFile: "$(Build.ArtifactStagingDirectory)/Zip/Artifacts.zip"
 
 resources:
   pipelines:
@@ -38,7 +39,14 @@ jobs:
           zipAfterPublish: false
           modifyOutputPath: false
 
+      - task: ArchiveFiles@2
+        displayName: Archive as ZIP
+        inputs:
+          rootFolderOrFile: '$(PublishPath)'
+          includeRootFolder: false
+          archiveFile: '$(ArchiveFile)'
+
       - task: PublishBuildArtifacts@1
         displayName: "Save Artifact"
         inputs:
-          PathtoPublish: "$(PublishPath)"
+          PathtoPublish: "$(ArchiveFile)"

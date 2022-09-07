@@ -69,4 +69,4 @@ jobs:
         inputs:
           solutionOrProjectPath: DrMuellersExampleApp.sln
           commandLineInterfacePath: $(Build.SourcesDirectory)/Lib/Resharper/JetBrains.ReSharper.CommandLineTools.2021.2.0/tools
-          additionalArguments: "--no-build"
+          # additionalArguments: "--no-build"

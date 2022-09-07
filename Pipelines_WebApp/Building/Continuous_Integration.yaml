@@ -1,4 +1,4 @@
-name: 1.0$(rev:.r) # build numbering format
+name: $(Date:yyyyMMdd)$(Rev:.r)
 
 trigger:
   batch: true # batch changes if true; start a new build for every push if false (default)

@@ -13,7 +13,7 @@ pool:
   vmImage: windows-latest
   
 variables:
-- group: DrMuellersExampleApp-WebApp-Backend
+- group: DrMuellersExampleApp-Backend
 
 stages:
   - stage: Production
@@ -30,8 +30,8 @@ stages:
                 displayName: "Download Build Artifacts"
                 inputs:
                   buildType: specific
-                  project: "ba9fa09c-552b-4c7d-ac6c-65c3351012f4"
-                  definition: 179
+                  project: 'ba9fa09c-552b-4c7d-ac6c-65c3351012f4'
+                  pipeline: 221
                   specificBuildWithTriggering: true
                   downloadPath: $(System.DefaultWorkingDirectory)
 

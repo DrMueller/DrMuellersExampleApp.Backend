@@ -20,12 +20,12 @@ jobs:
         displayName: Restore
         inputs:
           command: restore
-          projects: 'Sources/**/*.csproj'
-          vstsFeed: '3c2d9c9a-d8f7-42f4-b7a3-dddf4064110a'
+          projects: "Sources/**/*.csproj"
+          vstsFeed: "3c2d9c9a-d8f7-42f4-b7a3-dddf4064110a"
       - task: DrMueller2.NuGetVulnerabilityScan.NugetVulnerabilityScanTask.NugetVulnerabilityScanTask@1
         displayName: NuGet Vulnerability Scan
         inputs:
-          projectPath: "**/*.csproj"
+          projectPath: "Sources/**/*.csproj"
       - task: DotNetCoreCLI@2
         displayName: "Build with warnings as errors"
         inputs:
@@ -42,7 +42,7 @@ jobs:
   #   pool:
   #     name: Azure Pipelines
   #     vmImage: windows-latest
-  #   steps:          
+  #   steps:
   #     - task: DotNetCoreCLI@2
   #       displayName: Restore
   #       inputs:

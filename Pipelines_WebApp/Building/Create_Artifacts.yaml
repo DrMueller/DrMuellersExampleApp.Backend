@@ -4,41 +4,41 @@ trigger: none # will disable CI builds entirely
 
 variables:
   BuildConfiguration: "Release"
-  PublishPath: '$(Build.ArtifactStagingDirectory)/App'
+  PublishPath: "$(Build.ArtifactStagingDirectory)/App"
 
 resources:
   pipelines:
-  - pipeline: eabwebapp-create-artifacts-pip # Name of the pipeline resource
-    source: 01-EABWebApp-Continuous-Integration # Name of the pipeline referenced by the pipeline resource
-    trigger: 
-      branches:
-      - refs/heads/master^
+    - pipeline: eabwebapp-create-artifacts-pip # Name of the pipeline resource
+      source: 01-EABWebApp-Continuous-Integration # Name of the pipeline referenced by the pipeline resource
+      trigger:
+        branches:
+          - refs/heads/master
 
 jobs:
-- job: 'BuildAndPublishAsArtifact'
-  displayName: 'Build and save zipped Artifact'
-  pool:
-    name: Azure Pipelines
-    vmImage: windows-latest
+  - job: "BuildAndPublishAsArtifact"
+    displayName: "Build and save zipped Artifact"
+    pool:
+      name: Azure Pipelines
+      vmImage: windows-latest
 
-  steps:
-  - task: DotNetCoreCLI@2
-    displayName: 'Restore'
-    inputs:
-      command: restore
-      projects: 'Sources/**/*.csproj'
+    steps:
+      - task: DotNetCoreCLI@2
+        displayName: "Restore"
+        inputs:
+          command: restore
+          projects: "Sources/**/*.csproj"
 
-  - task: DotNetCoreCLI@2
-    displayName: Publish Web API
-    inputs:
-      command: publish
-      publishWebProjects: false
-      projects: 'Sources/Application/Mmu.DrMuellersExampleApp.csproj'
-      arguments: '--configuration $(BuildConfiguration) --output $(PublishPath) /p:DeleteExistingFiles=True'
-      zipAfterPublish: false
-      modifyOutputPath: false
+      - task: DotNetCoreCLI@2
+        displayName: Publish Web API
+        inputs:
+          command: publish
+          publishWebProjects: false
+          projects: "Sources/Application/Mmu.DrMuellersExampleApp.csproj"
+          arguments: "--configuration $(BuildConfiguration) --output $(PublishPath) /p:DeleteExistingFiles=True"
+          zipAfterPublish: false
+          modifyOutputPath: false
 
-  - task: PublishBuildArtifacts@1
-    displayName: 'Save Artifact'
-    inputs:
-      PathtoPublish: '$(PublishPath)'
+      - task: PublishBuildArtifacts@1
+        displayName: "Save Artifact"
+        inputs:
+          PathtoPublish: "$(PublishPath)"

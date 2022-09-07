@@ -1,4 +1,4 @@
-name: 1.0$(rev:.r) # build numbering format
+name: $(Date:yyyyMMdd)$(Rev:.r)
 
 trigger: none
 
@@ -34,4 +34,11 @@ stages:
                   pipeline: 221
                   specificBuildWithTriggering: true
                   downloadPath: $(System.DefaultWorkingDirectory)
-
+              - task: AzureRmWebAppDeployment@4
+                displayName: 'Deploy Azure App Service'
+                inputs:
+                  azureSubscription: '05b34a60-79e8-4b91-ac72-afb66d4551c9'
+                  appType: 'webApp'
+                  WebAppName: 'DrMuellersExampleAppBackend'
+                  packageForLinux: '$(System.DefafultWorkingDirectory)/**/*.zip'
+                  JSONFiles: '**/*.json'

@@ -1,52 +1,38 @@
-using System.Text;
 using Lamar;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
+using Microsoft.Identity.Web;
 using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Config.Services;
 using Mmu.DrMuellersExampleApp.Web.Infrastructure.Initialization;
 
-namespace Mmu.DrMuellersExampleApp
+namespace Mmu.DrMuellersExampleApp;
+
+public class Startup
 {
-    public class Startup
+    public Startup()
     {
-        private IConfiguration Configuration { get; }
+        Configuration = ConfigurationFactory.Create();
+    }
 
-        public Startup()
-        {
-            Configuration = ConfigurationFactory.Create();
-        }
+    private IConfiguration Configuration { get; }
 
-        public void Configure(IApplicationBuilder app)
-        {
-            AppInitialization.InitializeApplication(app, Configuration);
-        }
+    public void Configure(IApplicationBuilder app)
+    {
+        AppInitialization.InitializeApplication(app, Configuration);
+    }
 
-        public void ConfigureContainer(ServiceRegistry services)
-        {
-            ConfigureAuthentication(services);
-            ServiceInitialization.InitializeServices(services, Configuration);
-        }
+    public void ConfigureContainer(ServiceRegistry services)
+    {
+        ////IdentityModelEventSource.ShowPII = true;
+        ConfigureAuthentication(services);
+        ServiceInitialization.InitializeServices(services, Configuration);
+    }
 
-        // We do this here in order to let test-web apis overwrite the securit
-        protected virtual void ConfigureAuthentication(IServiceCollection services)
-        {
-            var secretKey = Configuration.GetValue<string>("AppSettings:SecretKey");
-            var key = Encoding.ASCII.GetBytes(secretKey);
-            services.AddAuthentication(
-                    x =>
-                    {
-                        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                    })
-                .AddJwtBearer(
-                    x =>
-                    {
-                        x.RequireHttpsMetadata = false;
-                        x.SaveToken = true;
-#pragma warning disable CA5404 // Do not disable token validation checks
-                        x.TokenValidationParameters = new TokenValidationParameters { ValidateIssuerSigningKey = true, IssuerSigningKey = new SymmetricSecurityKey(key), ValidateIssuer = false, ValidateAudience = false };
-#pragma warning restore CA5404 // Do not disable token validation checks
-                    });
-        }
+    // We do this here in order to let test-web apis overwrite the securit
+    protected virtual void ConfigureAuthentication(IServiceCollection services)
+    {
+        var section = Configuration.GetSection("AppSettings:AzureAd");
+        services
+            .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddMicrosoftIdentityWebApi(section, subscribeToJwtBearerMiddlewareDiagnosticsEvents: true);
     }
 }

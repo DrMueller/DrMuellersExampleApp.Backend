@@ -1,7 +1,6 @@
-﻿namespace Mmu.DrMuellersExampleApp.Domain.Infrastructure.Data.UnitOfWorks
+﻿namespace Mmu.DrMuellersExampleApp.Domain.Infrastructure.Data.UnitOfWorks;
+
+public interface IUnitOfWorkFactory
 {
-    public interface IUnitOfWorkFactory
-    {
-        IUnitOfWork Create();
-    }
+    IUnitOfWork Create();
 }

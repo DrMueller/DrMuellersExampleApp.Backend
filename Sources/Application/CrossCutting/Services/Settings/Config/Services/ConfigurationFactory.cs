@@ -1,26 +1,22 @@
 using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Models;
 
-namespace Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Config.Services
+namespace Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Config.Services;
+
+public static class ConfigurationFactory
 {
-    public static class ConfigurationFactory
+    public static IConfiguration Create()
     {
-        public static IConfiguration Create()
-        {
-            var configBuilder = new ConfigurationBuilder();
-            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        var configBuilder = new ConfigurationBuilder();
+        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-            configBuilder
-                .SetBasePath(AppContext.BaseDirectory)
-                .AddJsonFile("appsettings.json", true, false);
+        configBuilder
+            .SetBasePath(AppContext.BaseDirectory)
+            .AddJsonFile("appsettings.json", true, false);
 
-            if (environment == "Development")
-            {
-                configBuilder.AddUserSecrets<AppSettings>();
-            }
+        if (environment == "Development") configBuilder.AddUserSecrets<AppSettings>();
 
-            configBuilder.AddEnvironmentVariables();
+        configBuilder.AddEnvironmentVariables();
 
-            return configBuilder.Build();
-        }
+        return configBuilder.Build();
     }
 }

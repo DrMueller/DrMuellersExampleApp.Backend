@@ -1,7 +1,6 @@
-namespace Mmu.DrMuellersExampleApp.CrossCutting.Errors
+namespace Mmu.DrMuellersExampleApp.CrossCutting.Errors;
+
+public abstract class ServerError
 {
-    public abstract class ServerError
-    {
-        public abstract string ToDescription();
-    }
+    public abstract string ToDescription();
 }

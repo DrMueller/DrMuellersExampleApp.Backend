@@ -10,10 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Domain\Areas\Pictures\Assets\ThumbsUp.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.7" />
 	  <PackageReference Include="AspNetCoreAnalyzers" Version="0.3.0" />
 	  <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
@@ -36,6 +32,7 @@
 	  </PackageReference>
 	  <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
 	  <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+	  <PackageReference Include="Microsoft.Identity.Web" Version="1.25.2" />
 	  <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.1.46">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -48,11 +45,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\Areas\Users\Models\" />
+    <Content Update="Nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Domain\Areas\Pictures\Assets\ThumbsUp.jpg" />
+    <Folder Include="Domain\Areas\" />
   </ItemGroup>
 
 </Project>

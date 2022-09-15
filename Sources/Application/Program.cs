@@ -12,15 +12,9 @@ public static class Program
         return Host.CreateDefaultBuilder(args)
             .UseLamar()
             .ConfigureLogging(
-                loggingBuilder =>
-                {
-                    loggingBuilder.AddNLog();
-                })
+                loggingBuilder => { loggingBuilder.AddNLog(); })
             .ConfigureWebHostDefaults(
-                webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+                webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
 
     public static void Main(string[] args)

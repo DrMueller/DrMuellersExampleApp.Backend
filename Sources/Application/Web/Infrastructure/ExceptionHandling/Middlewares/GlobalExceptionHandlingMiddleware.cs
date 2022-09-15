@@ -6,42 +6,43 @@ using Mmu.DrMuellersExampleApp.CrossCutting.Services.Logging;
 using Mmu.DrMuellersExampleApp.Web.Infrastructure.ExceptionHandling.Models;
 using Newtonsoft.Json;
 
-namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.ExceptionHandling.Middlewares
+namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.ExceptionHandling.Middlewares;
+
+[PublicAPI]
+internal class GlobalExceptionHandlingMiddleware
 {
-    [PublicAPI]
-    internal class GlobalExceptionHandlingMiddleware
+    private readonly ILoggingService _loggingService;
+    private readonly RequestDelegate _next;
+
+    public GlobalExceptionHandlingMiddleware(RequestDelegate next, ILoggingService loggingService)
     {
-        private readonly ILoggingService _loggingService;
-        private readonly RequestDelegate _next;
+        _next = next;
+        _loggingService = loggingService;
+    }
 
-        public GlobalExceptionHandlingMiddleware(RequestDelegate next, ILoggingService loggingService)
+    [SuppressMessage("Design", "CA1031:Do not catch general exception types",
+        Justification = "Global exception handler")]
+    [SuppressMessage("Style", "VSTHRD200:Use \"Async\" suffix for async methods",
+        Justification = "Microsoft-convention for middlewares")]
+    public async Task Invoke(HttpContext httpContext)
+    {
+        try
         {
-            _next = next;
-            _loggingService = loggingService;
+            await _next(httpContext);
         }
-
-        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Global exception handler")]
-        [SuppressMessage("Style", "VSTHRD200:Use \"Async\" suffix for async methods", Justification = "Microsoft-convention for middlewares")]
-        public async Task Invoke(HttpContext httpContext)
+        catch (Exception exception)
         {
-            try
-            {
-                await _next(httpContext);
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception.ToString());
-                _loggingService.LogException(exception);
+            Console.WriteLine(exception.ToString());
+            _loggingService.LogException(exception);
 
-                var response = httpContext.Response;
-                response.ContentType = MediaTypeNames.Application.Json;
-                response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            var response = httpContext.Response;
+            response.ContentType = MediaTypeNames.Application.Json;
+            response.StatusCode = (int) HttpStatusCode.InternalServerError;
 
-                var serverError = UnExpectedServerError.CreateFromException(exception);
-                var serializedServerError = JsonConvert.SerializeObject(serverError);
+            var serverError = UnExpectedServerError.CreateFromException(exception);
+            var serializedServerError = JsonConvert.SerializeObject(serverError);
 
-                await response.WriteAsync(serializedServerError);
-            }
+            await response.WriteAsync(serializedServerError);
         }
     }
 }

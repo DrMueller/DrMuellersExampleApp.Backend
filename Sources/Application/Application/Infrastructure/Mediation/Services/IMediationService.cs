@@ -1,13 +1,12 @@
 ﻿using Mmu.DrMuellersExampleApp.Application.Infrastructure.Mediation.Models;
 
-namespace Mmu.DrMuellersExampleApp.Application.Infrastructure.Mediation.Services
+namespace Mmu.DrMuellersExampleApp.Application.Infrastructure.Mediation.Services;
+
+public interface IMediationService
 {
-    public interface IMediationService
-    {
-        Task<T> SendAsync<T>(ICommand<T> command);
+    Task<T> SendAsync<T>(ICommand<T> command);
 
-        Task SendAsync(ICommand command);
+    Task SendAsync(ICommand command);
 
-        Task<T> SendAsync<T>(IQuery<T> query);
-    }
+    Task<T> SendAsync<T>(IQuery<T> query);
 }

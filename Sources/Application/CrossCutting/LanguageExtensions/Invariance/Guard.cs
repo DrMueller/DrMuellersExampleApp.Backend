@@ -2,89 +2,73 @@ using System.Linq.Expressions;
 using JetBrains.Annotations;
 using Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Invariance.Servants;
 
-namespace Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Invariance
+namespace Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Invariance;
+
+[PublicAPI]
+public static class Guard
 {
-    [PublicAPI]
-    public static class Guard
+    private const string CollectionNullOrEmptyMessage = "Collection {0} must not be null or empty.";
+    private const string NullObjectExceptionMessage = "Object {0} must not be null.";
+    private const string StringNullOrEmptyExceptionMessage = "String {0} must not be null or empty.";
+    private const string ValueNullOrEmptyExceptionMessage = "Value {0} must not be null or empty.";
+
+    public static void CollectionNotNullOrEmpty<T>(Expression<Func<IEnumerable<T>?>> propertyExpression)
     {
-        private const string CollectionNullOrEmptyMessage = "Collection {0} must not be null or empty.";
-        private const string NullObjectExceptionMessage = "Object {0} must not be null.";
-        private const string StringNullOrEmptyExceptionMessage = "String {0} must not be null or empty.";
-        private const string ValueNullOrEmptyExceptionMessage = "Value {0} must not be null or empty.";
+        var func = propertyExpression.Compile();
+        var collection = func();
 
-        public static void CollectionNotNullOrEmpty<T>(Expression<Func<IEnumerable<T>?>> propertyExpression)
-        {
-            var func = propertyExpression.Compile();
-            var collection = func();
+        if (collection != null && collection.Any()) return;
 
-            if (collection != null && collection.Any())
-            {
-                return;
-            }
+        ThrowException(CollectionNullOrEmptyMessage, propertyExpression);
+    }
 
-            ThrowException(CollectionNullOrEmptyMessage, propertyExpression);
-        }
+    public static void ObjectNotNull(Expression<Func<object?>> propertyExpression)
+    {
+        var func = propertyExpression.Compile();
+        var obj = func();
 
-        public static void ObjectNotNull(Expression<Func<object?>> propertyExpression)
-        {
-            var func = propertyExpression.Compile();
-            var obj = func();
+        if (obj != null) return;
 
-            if (obj != null)
-            {
-                return;
-            }
+        ThrowException(NullObjectExceptionMessage, propertyExpression);
+    }
 
-            ThrowException(NullObjectExceptionMessage, propertyExpression);
-        }
+    public static void StringNotNullOrEmpty(Expression<Func<string>> propertyExpression)
+    {
+        var func = propertyExpression.Compile();
+        var stringValue = func();
 
-        public static void StringNotNullOrEmpty(Expression<Func<string>> propertyExpression)
-        {
-            var func = propertyExpression.Compile();
-            var stringValue = func();
+        if (!string.IsNullOrEmpty(stringValue)) return;
 
-            if (!string.IsNullOrEmpty(stringValue))
-            {
-                return;
-            }
+        ThrowException(StringNullOrEmptyExceptionMessage, propertyExpression);
+    }
 
-            ThrowException(StringNullOrEmptyExceptionMessage, propertyExpression);
-        }
+    public static void That(Func<bool> guardClause, string exceptionMessage)
+    {
+        if (guardClause()) return;
 
-        public static void That(Func<bool> guardClause, string exceptionMessage)
-        {
-            if (guardClause())
-            {
-                return;
-            }
+        ThrowException(exceptionMessage);
+    }
 
-            ThrowException(exceptionMessage);
-        }
+    public static void ValueNotDefault<T>(Expression<Func<T>> propertyExpression)
+        where T : struct
+    {
+        var func = propertyExpression.Compile();
+        var funcValue = func();
 
-        public static void ValueNotDefault<T>(Expression<Func<T>> propertyExpression)
-            where T : struct
-        {
-            var func = propertyExpression.Compile();
-            var funcValue = func();
+        if (!EqualityComparer<T>.Default.Equals(funcValue, default)) return;
 
-            if (!EqualityComparer<T>.Default.Equals(funcValue, default))
-            {
-                return;
-            }
+        ThrowException(ValueNullOrEmptyExceptionMessage, propertyExpression);
+    }
 
-            ThrowException(ValueNullOrEmptyExceptionMessage, propertyExpression);
-        }
+    private static void ThrowException<T>(string exceptionMessageShell, Expression<Func<T>> propertyExpression)
+    {
+        var propertyName = ExpressionServant.GetPropertyName(propertyExpression);
+        var exceptionMessage = string.Format(exceptionMessageShell, propertyName);
+        ThrowException(exceptionMessage);
+    }
 
-        private static void ThrowException<T>(string exceptionMessageShell, Expression<Func<T>> propertyExpression)
-        {
-            var propertyName = ExpressionServant.GetPropertyName(propertyExpression);
-            var exceptionMessage = string.Format(exceptionMessageShell, propertyName);
-            ThrowException(exceptionMessage);
-        }
-
-        private static void ThrowException(string exceptionMessage)
-        {
-            throw new ArgumentException(exceptionMessage);
-        }
+    private static void ThrowException(string exceptionMessage)
+    {
+        throw new ArgumentException(exceptionMessage);
     }
 }

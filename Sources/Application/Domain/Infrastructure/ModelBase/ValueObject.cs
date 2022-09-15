@@ -1,8 +1,7 @@
-﻿namespace Mmu.DrMuellersExampleApp.Domain.Infrastructure.ModelBase
-{
-    public abstract record ValueObject
+﻿namespace Mmu.DrMuellersExampleApp.Domain.Infrastructure.ModelBase;
 
-        // ReSharper disable once RedundantRecordBody
-    {
-    }
+public abstract record ValueObject
+
+    // ReSharper disable once RedundantRecordBody
+{
 }

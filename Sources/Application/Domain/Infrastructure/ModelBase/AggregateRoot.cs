@@ -1,6 +1,5 @@
-﻿namespace Mmu.DrMuellersExampleApp.Domain.Infrastructure.ModelBase
+﻿namespace Mmu.DrMuellersExampleApp.Domain.Infrastructure.ModelBase;
+
+public abstract class AggregateRoot : Entity, IAggregateRoot
 {
-    public abstract class AggregateRoot : Entity, IAggregateRoot
-    {
-    }
 }

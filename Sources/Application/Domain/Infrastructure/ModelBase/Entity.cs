@@ -1,72 +1,56 @@
 ﻿using JetBrains.Annotations;
 using Mmu.DrMuellersExampleApp.Domain.Infrastructure.ModelBase.Technical;
 
-namespace Mmu.DrMuellersExampleApp.Domain.Infrastructure.ModelBase
+namespace Mmu.DrMuellersExampleApp.Domain.Infrastructure.ModelBase;
+
+[PublicAPI]
+public abstract class Entity : IHasTimeStamps
 {
-    [PublicAPI]
-    public abstract class Entity : IHasTimeStamps
+    public DateTime CreatedDate { get; private set; }
+    public long Id { get; }
+    public DateTime UpdatedDate { get; private set; }
+
+    DateTime IHasTimeStamps.CreatedDate
     {
-        public DateTime CreatedDate { get; private set; }
-        public long Id { get; }
-        public DateTime UpdatedDate { get; private set; }
-
-        DateTime IHasTimeStamps.CreatedDate
-        {
 #pragma warning disable CA1033 // Interface methods should be callable by child types
-            set => CreatedDate = value;
+        set => CreatedDate = value;
 #pragma warning restore CA1033 // Interface methods should be callable by child types
-        }
+    }
 
-        DateTime IHasTimeStamps.UpdatedDate
-        {
+    DateTime IHasTimeStamps.UpdatedDate
+    {
 #pragma warning disable CA1033 // Interface methods should be callable by child types
-            set => UpdatedDate = value;
+        set => UpdatedDate = value;
 #pragma warning restore CA1033 // Interface methods should be callable by child types
-        }
+    }
 
-        public static bool operator ==(Entity? a, Entity? b)
-        {
-            if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
-            {
-                return true;
-            }
+    public static bool operator ==(Entity? a, Entity? b)
+    {
+        if (ReferenceEquals(a, null) && ReferenceEquals(b, null)) return true;
 
-            if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
-            {
-                return false;
-            }
+        if (ReferenceEquals(a, null) || ReferenceEquals(b, null)) return false;
 
-            return a.Equals(b);
-        }
+        return a.Equals(b);
+    }
 
-        public static bool operator !=(Entity a, Entity b)
-        {
-            return !(a == b);
-        }
+    public static bool operator !=(Entity a, Entity b)
+    {
+        return !(a == b);
+    }
 
-        public override bool Equals(object? obj)
-        {
-            if (obj is not Entity compareTo)
-            {
-                return false;
-            }
+    public override bool Equals(object? obj)
+    {
+        if (obj is not Entity compareTo) return false;
 
-            if (ReferenceEquals(this, compareTo))
-            {
-                return true;
-            }
+        if (ReferenceEquals(this, compareTo)) return true;
 
-            if (GetType() != compareTo.GetType())
-            {
-                return false;
-            }
+        if (GetType() != compareTo.GetType()) return false;
 
-            return Id.Equals(compareTo.Id);
-        }
+        return Id.Equals(compareTo.Id);
+    }
 
-        public override int GetHashCode()
-        {
-            return (GetType() + Id.ToString()).GetHashCode(StringComparison.InvariantCulture);
-        }
+    public override int GetHashCode()
+    {
+        return (GetType() + Id.ToString()).GetHashCode(StringComparison.InvariantCulture);
     }
 }

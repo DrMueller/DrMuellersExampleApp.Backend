@@ -1,59 +1,52 @@
-namespace Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Types.Maybes.Implementation
+namespace Mmu.DrMuellersExampleApp.CrossCutting.LanguageExtensions.Types.Maybes.Implementation;
+
+public class Some<T> : Maybe<T>
 {
-    public class Some<T> : Maybe<T>
+    private readonly T _content;
+
+    public Some(T content)
     {
-        private readonly T _content;
+        _content = content;
+    }
 
-        public Some(T content)
-        {
-            _content = content;
-        }
+    public static implicit operator T(Some<T> value)
+    {
+        return value._content;
+    }
 
-        public static implicit operator T(Some<T> value)
-        {
-            return value._content;
-        }
+    public override bool Equals(Maybe<T>? other)
+    {
+        return Equals(other as Some<T>);
+    }
 
-        public override bool Equals(Maybe<T>? other)
-        {
-            return Equals(other as Some<T>);
-        }
+    public override bool Equals(T? other)
+    {
+        return ContentEquals(other);
+    }
 
-        public override bool Equals(T? other)
-        {
-            return ContentEquals(other);
-        }
+    public override int GetHashCode()
+    {
+        return _content!.GetHashCode();
+    }
 
-        public override int GetHashCode()
-        {
-            return _content!.GetHashCode();
-        }
+    // ReSharper disable once UnusedMember.Global
+    public T ToT(Some<T> value)
+    {
+        return value._content;
+    }
 
-        // ReSharper disable once UnusedMember.Global
-        public T ToT(Some<T> value)
-        {
-            return value._content;
-        }
+    private bool ContentEquals(T? other)
+    {
+        if (ReferenceEquals(null, _content) && ReferenceEquals(null, other)) return true;
 
-        private bool ContentEquals(T? other)
-        {
-            if (ReferenceEquals(null, _content) && ReferenceEquals(null, other))
-            {
-                return true;
-            }
+        if (!ReferenceEquals(null, _content) && _content.Equals(other)) return true;
 
-            if (!ReferenceEquals(null, _content) && _content.Equals(other))
-            {
-                return true;
-            }
+        return false;
+    }
 
-            return false;
-        }
-
-        private bool Equals(Some<T>? other)
-        {
-            return !ReferenceEquals(null, other) &&
-                ContentEquals(other._content);
-        }
+    private bool Equals(Some<T>? other)
+    {
+        return !ReferenceEquals(null, other) &&
+               ContentEquals(other._content);
     }
 }

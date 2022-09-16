@@ -59,7 +59,7 @@ jobs:
         displayName: "Restore ReSharper CLT NuGet"
         inputs:
           command: custom
-          arguments: "install JetBrains.ReSharper.CommandLineTools -source https://api.nuget.org/v3/index.json -Version 2021.2.0 -OutputDirectory $(Build.SourcesDirectory)/Lib/Resharper"
+          arguments: "install JetBrains.ReSharper.CommandLineTools -source https://api.nuget.org/v3/index.json -OutputDirectory $(Build.SourcesDirectory)/Lib/Resharper"
         condition: ne(variables.ReSharperCLTCacheRestored, 'true')
       - task: alanwales.resharper-code-analysis.custom-build-task.ResharperCli@2
         displayName: "Run ReSharper analysis"

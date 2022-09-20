@@ -14,8 +14,6 @@ internal static class AppInitialization
             .Get<string>();
         app.UsePathBase(basePath);
 
-        Console.WriteLine($"Using basePath {basePath}");
-
         app.UseMiddleware<ConsoleOutputMiddleware>();
         app.UseGlobalExceptionHandler();
         app.UseSwagger();

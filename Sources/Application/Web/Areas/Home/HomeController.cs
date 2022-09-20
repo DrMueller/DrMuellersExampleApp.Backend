@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Web.Resource;
 using Mmu.DrMuellersExampleApp.Application.Areas.Home.Welcome;
 using Mmu.DrMuellersExampleApp.Application.Infrastructure.Mediation.Services;
+using Mmu.DrMuellersExampleApp.Web.Infrastructure.Security;
 
 namespace Mmu.DrMuellersExampleApp.Web.Areas.Home;
 
 [Route("home")]
 [ApiController]
-[Authorize]
-[RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
+[Authorize(Policy = Policies.ApiWrite)]
 public class HomeController : ControllerBase
 {
     private readonly IMediationService _mediator;

@@ -1,6 +1,7 @@
 ﻿using Lamar;
 using Microsoft.OpenApi.Models;
 using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Models;
+using Mmu.DrMuellersExampleApp.Web.Infrastructure.Security;
 
 namespace Mmu.DrMuellersExampleApp.Web.Infrastructure.Initialization;
 
@@ -15,7 +16,10 @@ internal static class ServiceInitialization
                 scanner.LookForRegistries();
             });
 
+        SecurityInitialization.ConfigureAuthentication(services, configuration);
+
         services.AddControllers();
+
         services.Configure<AppSettings>(configuration.GetSection(AppSettings.SectionKey));
 
         ConfigureSwagger(services);

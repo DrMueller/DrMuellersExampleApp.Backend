@@ -39,6 +39,16 @@ jobs:
           zipAfterPublish: false
           modifyOutputPath: false
 
+      - task: qetza.replacetokens.replacetokens-task.replacetokens@5
+        displayName: "Replace tokens in appsettings.json"
+        inputs:
+          rootDirectory: "PublishPath"
+          targetFiles: |
+            **/appsettings.json
+          tokenPattern: rm
+          verbosity: detailed
+          keepToken: true
+
       - task: ArchiveFiles@2
         displayName: Archive as ZIP
         inputs:

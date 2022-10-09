@@ -1,29 +1,41 @@
+using Microsoft.ApplicationInsights.DataContracts;
+using Microsoft.ApplicationInsights;
+using System;
+
 namespace Mmu.DrMuellersExampleApp.CrossCutting.Services.Logging.Implementation;
 
 public class LoggingService : ILoggingService
 {
-    private readonly ILogger<LoggingService> _logger;
+    private readonly TelemetryClient _telemetryClient;
 
-    public LoggingService(ILogger<LoggingService> logger)
+    public LoggingService(TelemetryClient telemetryClient)
     {
-        _logger = logger;
+        _telemetryClient = telemetryClient;
     }
 
     public void LogError(string message)
     {
-        Console.WriteLine("Error: " + message);
-        _logger.LogError(message);
+        _telemetryClient.TrackException(
+            new ExceptionTelemetry
+            {
+                Message = message
+            });
     }
 
     public void LogException(Exception ex)
     {
-        Console.WriteLine("Exception: " + ex.Message);
-        _logger.LogError(ex, ex.Message);
+        _telemetryClient.TrackException(ex);
     }
+
 
     public void LogInformation(string message)
     {
-        Console.WriteLine("Information: " + message);
-        _logger.LogInformation(message);
+        _telemetryClient.TrackTrace(
+            message,
+            SeverityLevel.Information,
+            new Dictionary<string, string>
+            {
+                { "TestName", "TestValue" }
+            });
     }
 }

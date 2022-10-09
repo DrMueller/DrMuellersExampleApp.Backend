@@ -17,7 +17,7 @@ internal static class ServiceInitialization
             });
 
         SecurityInitialization.ConfigureAuthentication(services, configuration);
-
+        services.AddApplicationInsightsTelemetry();
         services.AddControllers();
 
         services.Configure<AppSettings>(configuration.GetSection(AppSettings.SectionKey));

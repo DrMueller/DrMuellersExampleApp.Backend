@@ -1,6 +1,5 @@
 using JetBrains.Annotations;
 using Lamar.Microsoft.DependencyInjection;
-using NLog.Extensions.Logging;
 
 namespace Mmu.DrMuellersExampleApp;
 
@@ -11,8 +10,6 @@ public static class Program
     {
         return Host.CreateDefaultBuilder(args)
             .UseLamar()
-            .ConfigureLogging(
-                loggingBuilder => { loggingBuilder.AddNLog(); })
             .ConfigureWebHostDefaults(
                 webBuilder => { webBuilder.UseStartup<Startup>(); });
     }

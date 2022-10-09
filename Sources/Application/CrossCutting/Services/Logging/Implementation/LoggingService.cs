@@ -1,6 +1,5 @@
-using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.ApplicationInsights;
-using System;
+using Microsoft.ApplicationInsights.DataContracts;
 
 namespace Mmu.DrMuellersExampleApp.CrossCutting.Services.Logging.Implementation;
 
@@ -35,7 +34,7 @@ public class LoggingService : ILoggingService
             SeverityLevel.Information,
             new Dictionary<string, string>
             {
-                { "TestName", "TestValue" }
+                {"TestName", "TestValue"}
             });
     }
 }

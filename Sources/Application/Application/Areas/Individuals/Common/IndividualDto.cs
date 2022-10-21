@@ -1,16 +1,15 @@
 ﻿using JetBrains.Annotations;
 
-namespace Mmu.DrMuellersExampleApp.Application.Areas.Individuals.Common
+namespace Mmu.DrMuellersExampleApp.Application.Areas.Individuals.Common;
+
+[PublicAPI]
+public class IndividualDto
 {
-    [PublicAPI]
-    public class IndividualDto
-    {
-        public string FirstName { get; set; }
+    public string FirstName { get; set; } = null!;
 
-        public string LastName { get; set; }
+    public string LastName { get; set; } = null!;
 
-        public long ID { get; set; }
+    public long Id { get; set; }
 
-        public DateTime Birthdate { get; set; }
-    }
+    public DateTime Birthdate { get; set; }
 }

@@ -1,16 +1,14 @@
 ﻿using Mmu.DrMuellersExampleApp.Application.Areas.Individuals.Common;
 using Mmu.DrMuellersExampleApp.Application.Infrastructure.Mediation.Models;
 
-namespace Mmu.DrMuellersExampleApp.Application.Areas.Individuals.UpsertIndividual
+namespace Mmu.DrMuellersExampleApp.Application.Areas.Individuals.LoadIndividualById;
+
+public class LoadIndividualByIdCommand : ICommand<IndividualDto>
 {
-    public class LoadIndividualByIdCommand : ICommand<IndividualDto>
+    public LoadIndividualByIdCommand(long id)
     {
-        public long Id { get; }
-
-        public LoadIndividualByIdCommand(long id)
-        {
-            Id = id;
-        }
-
+        Id = id;
     }
+
+    public long Id { get; }
 }

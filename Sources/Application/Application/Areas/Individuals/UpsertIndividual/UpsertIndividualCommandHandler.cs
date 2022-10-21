@@ -9,7 +9,9 @@ public class UpsertIndividualCommandHandler : IRequestHandler<UpsertIndividualCo
 
     public Task<IndividualDto> Handle(UpsertIndividualCommand request, CancellationToken cancellationToken)
     {
+#pragma warning disable CA5394 // Do not use insecure randomness
         request.Individual.Id = _random.Next(1000);
+#pragma warning restore CA5394 // Do not use insecure randomness
         return Task.FromResult(request.Individual);
     }
 }

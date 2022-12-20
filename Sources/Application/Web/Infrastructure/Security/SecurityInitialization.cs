@@ -29,7 +29,7 @@ public static class SecurityInitialization
 
             var defaultPolicy = new AuthorizationPolicyBuilder()
                 .RequireAuthenticatedUser()
-                .RequireScope(scopes)
+                .RequireScope(scopes!)
                 .Build();
 
             options.DefaultPolicy = defaultPolicy;

@@ -16,12 +16,16 @@ jobs:
       name: Azure Pipelines
       vmImage: ubuntu-latest
     steps:
-      - task: DotNetCoreCLI@2
-        displayName: Restore
-        inputs:
-          command: restore
-          projects: "Sources/**/*.csproj"
-          vstsFeed: "3c2d9c9a-d8f7-42f4-b7a3-dddf4064110a"
+    - task: NuGetCommand@2
+      displayName: 'NuGet restore'
+      inputs:
+        vstsFeed: '3c2d9c9a-d8f7-42f4-b7a3-dddf4064110a'
+      # - task: DotNetCoreCLI@2
+      #   displayName: Restore
+      #   inputs:
+      #     command: restore
+      #     projects: "Sources/**/*.csproj"
+      #     vstsFeed: '3c2d9c9a-d8f7-42f4-b7a3-dddf4064110a'
       - task: DrMueller2.NuGetVulnerabilityScan.NugetVulnerabilityScanTask.NugetVulnerabilityScanTask@1
         displayName: NuGet Vulnerability Scan
         inputs:

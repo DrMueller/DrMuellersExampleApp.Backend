@@ -16,10 +16,10 @@ jobs:
       name: Azure Pipelines
       vmImage: ubuntu-latest
     steps:
-    - task: NuGetCommand@2
-      displayName: 'NuGet restore'
-      inputs:
-        vstsFeed: '3c2d9c9a-d8f7-42f4-b7a3-dddf4064110a'
+      - task: NuGetCommand@2
+        displayName: 'NuGet restore'
+        inputs:
+          vstsFeed: '3c2d9c9a-d8f7-42f4-b7a3-dddf4064110a'
       # - task: DotNetCoreCLI@2
       #   displayName: Restore
       #   inputs:

@@ -2,7 +2,6 @@ steps:
 - task: CSE-DevOps.zap-scanner.custom-build-release-task.owaspzap@1
   displayName: 'ZAP Scanner'
   inputs:
-    aggressivemode: true
     scantype: targetedScan
     url: 'https://drmuellersexampleappbackend.azurewebsites.net/'
 

@@ -10,7 +10,7 @@ steps:
 - task: AzureRmWebAppDeployment@4
   displayName: 'Deploy Azure App Service'
   inputs:
-    azureSubscription: '05b34a60-79e8-4b91-ac72-afb66d4551c9'
+    azureSubscription: 'Pay-As-You-Go (91660754-3529-407f-8458-92759935fbf7)'
     appType: 'webApp'
     WebAppName: 'DrMuellersExampleAppBackend'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'

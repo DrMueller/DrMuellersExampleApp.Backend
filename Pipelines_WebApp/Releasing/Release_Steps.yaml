@@ -1,0 +1,3 @@
+steps:
+  - template: StepTemplates/Deploy_WebApp.yaml
+  - template: StepTemplates/Security_Scan.yaml

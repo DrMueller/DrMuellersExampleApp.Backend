@@ -16,9 +16,11 @@ jobs:
       name: Azure Pipelines
       vmImage: ubuntu-latest
     steps:
-      - task: NuGetCommand@2
-        displayName: 'NuGet restore'
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet restore'
         inputs:
+          command: restore
+          projects: '**/*.csproj'
           vstsFeed: '3c2d9c9a-d8f7-42f4-b7a3-dddf4064110a'
       - task: DrMueller2.NuGetVulnerabilityScan.NugetVulnerabilityScanTask.NugetVulnerabilityScanTask@1
         displayName: NuGet Vulnerability Scan
@@ -41,9 +43,11 @@ jobs:
       name: Azure Pipelines
       vmImage: windows-latest
     steps:
-      - task: NuGetCommand@2
-        displayName: 'NuGet restore'
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet restore'
         inputs:
+          command: restore
+          projects: '**/*.csproj'
           vstsFeed: '3c2d9c9a-d8f7-42f4-b7a3-dddf4064110a'
       - task: Cache@2
         displayName: Cache ReSharperCLT

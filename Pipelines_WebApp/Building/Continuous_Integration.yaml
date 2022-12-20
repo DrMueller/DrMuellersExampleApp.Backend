@@ -39,7 +39,8 @@ jobs:
     displayName: "Run ReSharper analysis"
     pool:
       name: Azure Pipelines
-      vmImage: windows-latest
+      # vmImage: windows-latest
+      vmImage: ubuntu-latest
     steps:
       - task: NuGetCommand@2
         displayName: 'NuGet restore'

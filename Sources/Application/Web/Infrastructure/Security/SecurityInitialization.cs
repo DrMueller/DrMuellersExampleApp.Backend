@@ -17,7 +17,6 @@ public static class SecurityInitialization
             options.MinimumSameSitePolicy = SameSiteMode.Strict;
         });
 
-
         services
             .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddMicrosoftIdentityWebApi(section, subscribeToJwtBearerMiddlewareDiagnosticsEvents: true);

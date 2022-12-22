@@ -12,6 +12,12 @@ public static class SecurityInitialization
         ConfigurePii();
         var section = config.GetSection("AppSettings:AzureAd");
 
+        services.Configure<CookiePolicyOptions>(options =>
+        {
+            options.MinimumSameSitePolicy = SameSiteMode.Strict;
+        });
+
+
         services
             .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddMicrosoftIdentityWebApi(section, subscribeToJwtBearerMiddlewareDiagnosticsEvents: true);

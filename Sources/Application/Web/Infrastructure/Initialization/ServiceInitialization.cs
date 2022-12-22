@@ -24,6 +24,17 @@ internal static class ServiceInitialization
 
         ConfigureSwagger(services);
         ConfigureCors(services);
+        ConfigureHsts(services);
+    }
+
+    private static void ConfigureHsts(IServiceCollection services)
+    {
+        services.AddHsts(options =>
+        {
+            options.Preload = true;
+            options.IncludeSubDomains = true;
+            options.MaxAge = TimeSpan.FromDays(365);
+        });
     }
 
     private static void ConfigureCors(IServiceCollection services)

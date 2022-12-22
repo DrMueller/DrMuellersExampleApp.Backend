@@ -11,7 +11,11 @@ public static class Program
         return Host.CreateDefaultBuilder(args)
             .UseLamar()
             .ConfigureWebHostDefaults(
-                webBuilder => { webBuilder.UseStartup<Startup>(); });
+                webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>()
+                        .UseKestrel(f => f.AddServerHeader = false);
+                });
     }
 
     public static void Main(string[] args)

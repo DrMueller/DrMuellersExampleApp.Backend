@@ -5,7 +5,7 @@ trigger: none # will disable CI builds entirely
 variables:
   BuildConfiguration: 'Release'
   PublishPath: '$(Build.ArtifactStagingDirectory)/App'
-  OutputPath: '$(Build.ArtifactStagingDirectory)/ArtifactsOutput'
+  FinalOutputPath: '$(Build.ArtifactStagingDirectory)/ArtifactsOutput'
   AdditionalArtifactsSourceFolder: 'Pipelines_WebApp/Building/AdditionalArtifacts'
 
 resources:
@@ -31,15 +31,6 @@ jobs:
           projects: 'Sources/**/*.csproj'
 
       - task: DotNetCoreCLI@2
-        displayName: Publish Web API 1
-        inputs:
-          command: publish
-          publishWebProjects: false
-          projects: 'Sources/Application/Mmu.DrMuellersExampleApp.csproj'
-          zipAfterPublish: false
-          modifyOutputPath: false
-
-      - task: DotNetCoreCLI@2
         displayName: Publish Web API
         inputs:
           command: publish
@@ -49,30 +40,30 @@ jobs:
           zipAfterPublish: false
           modifyOutputPath: false
 
-      # - task: qetza.replacetokens.replacetokens-task.replacetokens@5
-      #   displayName: 'Replace tokens in appsettings.json'
-      #   inputs:
-      #     rootDirectory: '$(PublishPath)'
-      #     targetFiles: |
-      #       **/appsettings.json
-      #     tokenPattern: rm
-      #     verbosity: detailed
-      #     keepToken: true
+      - task: qetza.replacetokens.replacetokens-task.replacetokens@5
+        displayName: 'Replace tokens in appsettings.json'
+        inputs:
+          rootDirectory: '$(PublishPath)'
+          targetFiles: |
+            **/appsettings.json
+          tokenPattern: rm
+          verbosity: detailed
+          keepToken: true
 
-      # - task: ArchiveFiles@2
-      #   displayName: Archive as ZIP
-      #   inputs:
-      #     rootFolderOrFile: '$(PublishPath)'
-      #     includeRootFolder: false
-      #     archiveFile: '$(OutputPath)/WebApp.zip'
+      - task: ArchiveFiles@2
+        displayName: Archive as ZIP
+        inputs:
+          rootFolderOrFile: '$(PublishPath)'
+          includeRootFolder: false
+          archiveFile: '$(FinalOutputPath)/WebApp.zip'
 
-      # - task: CopyFiles@2
-      #   displayName: 'Copy additional artifacts'
-      #   inputs:
-      #     SourceFolder: '$(AdditionalArtifactsSourceFolder)'
-      #     TargetFolder: '$(OutputPath)/Artifacts'
+      - task: CopyFiles@2
+        displayName: 'Copy additional artifacts'
+        inputs:
+          SourceFolder: '$(AdditionalArtifactsSourceFolder)'
+          TargetFolder: '$(FinalOutputPath)/Artifacts'
 
-      # - task: PublishBuildArtifacts@1
-      #   displayName: 'Save output'
-      #   inputs:
-      #     PathtoPublish: '$(OutputPath)'
+      - task: PublishBuildArtifacts@1
+        displayName: 'Save output'
+        inputs:
+          PathtoPublish: '$(FinalOutputPath)'

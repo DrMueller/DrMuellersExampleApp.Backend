@@ -3,9 +3,10 @@ name: 1.0$(rev:.r) # build numbering format
 trigger: none # will disable CI builds entirely
 
 variables:
-  BuildConfiguration: "Release"
-  PublishPath: "$(Build.ArtifactStagingDirectory)/App"
-  ArchiveFile: "$(Build.ArtifactStagingDirectory)/Zip/Artifacts.zip"
+  BuildConfiguration: 'Release'
+  PublishPath: '$(Build.ArtifactStagingDirectory)/App'
+  OutputPath: '$(Build.ArtifactStagingDirectory)/Output'
+  AdditionalArtifactsSourceFolder: 'Pipelines_WebApp/Building/Artifacts'
 
 resources:
   pipelines:
@@ -16,31 +17,31 @@ resources:
           - refs/heads/master
 
 jobs:
-  - job: "BuildAndPublishAsArtifact"
-    displayName: "Build and save zipped Artifact"
+  - job: 'BuildAndPublishAsArtifact'
+    displayName: 'Build and save zipped Artifact'
     pool:
       name: Azure Pipelines
       vmImage: windows-latest
 
     steps:
       - task: DotNetCoreCLI@2
-        displayName: "Restore"
+        displayName: 'Restore'
         inputs:
           command: restore
-          projects: "Sources/**/*.csproj"
+          projects: 'Sources/**/*.csproj'
 
       - task: DotNetCoreCLI@2
         displayName: Publish Web API
         inputs:
           command: publish
           publishWebProjects: false
-          projects: "Sources/Application/Mmu.DrMuellersExampleApp.csproj"
-          arguments: "--configuration $(BuildConfiguration) --output $(PublishPath) /p:DeleteExistingFiles=True"
+          projects: 'Sources/Application/Mmu.DrMuellersExampleApp.csproj'
+          arguments: '--configuration $(BuildConfiguration) --output $(PublishPath) /p:DeleteExistingFiles=True'
           zipAfterPublish: false
           modifyOutputPath: false
 
       - task: qetza.replacetokens.replacetokens-task.replacetokens@5
-        displayName: "Replace tokens in appsettings.json"
+        displayName: 'Replace tokens in appsettings.json'
         inputs:
           rootDirectory: '$(PublishPath)'
           targetFiles: |
@@ -54,9 +55,15 @@ jobs:
         inputs:
           rootFolderOrFile: '$(PublishPath)'
           includeRootFolder: false
-          archiveFile: '$(ArchiveFile)'
+          archiveFile: '$(OutputPath)/WebApp.zip'
+
+      - task: CopyFiles@2
+        displayName: 'Copy additional artifacts'
+        inputs:
+          SourceFolder: '$(AdditionalArtifactsSourceFolder)'
+          TargetFolder: '$(OutputPath)/Artifacts'
 
       - task: PublishBuildArtifacts@1
-        displayName: "Save Artifact"
+        displayName: 'Save output'
         inputs:
-          PathtoPublish: "$(ArchiveFile)"
+          PathtoPublish: '$(OutputPath)'

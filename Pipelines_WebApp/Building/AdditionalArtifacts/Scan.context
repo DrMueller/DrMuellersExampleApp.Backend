@@ -74,8 +74,12 @@
             </basic>
         </authorization>
         <alertFilters>
-            <filter>true;10021;0;aHR0cHM6Ly93d3cubXVlbGxlcm1hdHRoaWFzLm9yZy9zaXRlbWFwLnhtbA==;false;WC1Db250ZW50LVR5cGUtT3B0aW9ucw==;false;;false;;false;</filter>
-            <filter>true;10036;0;aHR0cHM6Ly93d3cubXVlbGxlcm1hdHRoaWFzLm9yZy9zaXRlbWFwLnhtbA==;false;;false;;false;TWljcm9zb2Z0LUlJUy8xMC4w;false;</filter>
+            <filter>true;10021;0;;false;;false;;false;;false;</filter>
+            <filter>true;10036;0;;false;;false;;false;;false;</filter>
+            <filter>true;10035;0;;false;;false;;false;;false;</filter>
+            <filter>true;10038;0;;false;;false;;false;;false;</filter>
+            <filter>true;10054;0;;false;;false;;false;;false;</filter>
+            <filter>true;90022;0;;false;;false;;false;;false;</filter>
         </alertFilters>
     </context>
 </configuration>

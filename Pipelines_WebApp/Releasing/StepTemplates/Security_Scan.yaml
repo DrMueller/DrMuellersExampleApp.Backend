@@ -4,6 +4,7 @@ steps:
   inputs:
     aggressivemode: true
     scantype: targetedScan
+    contextPath: Artifacts/Scan.context
     url: 'https://drmuellersexampleappbackend.azurewebsites.net/'
 
 - bash: |

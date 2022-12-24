@@ -5,7 +5,7 @@ trigger: none # will disable CI builds entirely
 variables:
   BuildConfiguration: 'Release'
   PublishPath: '$(Build.ArtifactStagingDirectory)/App'
-  OutputPath: '$(Build.ArtifactStagingDirectory)/Output'
+  OutputPath: '$(Build.ArtifactStagingDirectory)/ArtifactsOutput'
   AdditionalArtifactsSourceFolder: 'Pipelines_WebApp/Building/AdditionalArtifacts'
 
 resources:
@@ -36,8 +36,7 @@ jobs:
           command: publish
           publishWebProjects: false
           projects: 'Sources/Application/Mmu.DrMuellersExampleApp.csproj'
-          # arguments: '--configuration $(BuildConfiguration) --output $(PublishPath) /p:DeleteExistingFiles=True'
-          arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/App /p:DeleteExistingFiles=True'
+          arguments: '--configuration $(BuildConfiguration) --output $(PublishPath) /p:DeleteExistingFiles=True'
           zipAfterPublish: false
           modifyOutputPath: false
 

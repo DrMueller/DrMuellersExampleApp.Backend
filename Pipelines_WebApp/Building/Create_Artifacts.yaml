@@ -6,7 +6,7 @@ variables:
   BuildConfiguration: 'Release'
   PublishPath: '$(Build.ArtifactStagingDirectory)/App'
   OutputPath: '$(Build.ArtifactStagingDirectory)/Output'
-  AdditionalArtifactsSourceFolder: 'Pipelines_WebApp/Building/Artifacts'
+  AdditionalArtifactsSourceFolder: 'Pipelines_WebApp/Building/AdditionalArtifacts'
 
 resources:
   pipelines:

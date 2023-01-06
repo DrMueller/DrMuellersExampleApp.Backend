@@ -4,5 +4,5 @@ steps:
   inputs:
     name: 'dotnet-project-licenses'
     checkLatest: true
-- script: 'dotnet-project-licenses --input Sources/Application --unique --include-project-file --allowed-license-types AdditionalArtifacts/AllowedLicenses.json'
+- script: 'dotnet-project-licenses --input Sources/Application --unique --include-project-file --allowed-license-types Pipelines_WebApp/Building/AdditionalArtifacts/AllowedLicenses.json'
   displayName: 'Check licenses'

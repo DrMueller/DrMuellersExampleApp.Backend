@@ -37,7 +37,6 @@ jobs:
           command: test
           projects: "Sources/Testing/**/*Tests.csproj"
           arguments: "--configuration --configuration $(BuildConfiguration)"
-      - template: Steps_AnalyzeLicenses.yaml
   - job: "RunResharper"
     displayName: "Run ReSharper analysis"
     pool:

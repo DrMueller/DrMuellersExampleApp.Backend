@@ -1,0 +1,8 @@
+steps:
+- task: petersendev.dotnet-global-tool-installer.DotnetGlobalToolInstaller.DotnetGlobalToolInstaller@0
+  displayName: 'Install dotnet-project-licenses'
+  inputs:
+    name: 'dotnet-project-licenses'
+    checkLatest: true
+- script: 'dotnet-project-licenses --input Sources/Application --unique --include-project-file --allowed-license-types AdditionalArtifacts\AllowedLicenses.json'
+  displayName: 'Check licenses'

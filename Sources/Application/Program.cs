@@ -13,8 +13,7 @@ public static class Program
             .ConfigureWebHostDefaults(
                 webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>()
-                        .UseKestrel(f => f.AddServerHeader = false);
+                    webBuilder.UseStartup<Startup>();
                 });
     }
 

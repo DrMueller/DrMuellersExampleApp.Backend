@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Logging;
 
@@ -12,29 +12,32 @@ public static class SecurityInitialization
         ConfigurePii();
         var section = config.GetSection("AppSettings:AzureAd");
 
+        Console.WriteLine("Hello Console");
+        Debug.WriteLine("Hello debug");
+
         services
             .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddMicrosoftIdentityWebApi(section, subscribeToJwtBearerMiddlewareDiagnosticsEvents: true);
 
-        ConfigurePolicies(services, section);
+        //ConfigurePolicies(services, section);
     }
 
-    private static void ConfigurePolicies(IServiceCollection services, IConfigurationSection azureAdSection)
-    {
-        var scopes = azureAdSection.GetValue<string>("Scopes");
+    //private static void ConfigurePolicies(IServiceCollection services, IConfigurationSection azureAdSection)
+    //{
+    //    var scopes = azureAdSection.GetValue<string>("Scopes");
 
-        services.AddAuthorization(options =>
-        {
-            options.AddPolicy(Policies.ApiWrite, policy => policy.RequireRole(Roles.ApiWrite));
+    //    services.AddAuthorization(options =>
+    //    {
+    //        options.AddPolicy(Policies.ApiWrite, policy => policy.RequireRole(Roles.ApiWrite));
 
-            var defaultPolicy = new AuthorizationPolicyBuilder()
-                .RequireAuthenticatedUser()
-                .RequireScope(scopes!)
-                .Build();
+    //        var defaultPolicy = new AuthorizationPolicyBuilder()
+    //            .RequireAuthenticatedUser()
+    //            .RequireScope(scopes!)
+    //            .Build();
 
-            options.DefaultPolicy = defaultPolicy;
-        });
-    }
+    //        options.DefaultPolicy = defaultPolicy;
+    //    });
+    //}
 
     private static void ConfigurePii()
     {

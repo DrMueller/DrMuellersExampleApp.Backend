@@ -30,6 +30,17 @@ jobs:
           command: restore
           projects: 'Sources/**/*.csproj'
 
+      - task: gittools.gittools.setup-gitversion-task.gitversion/setup@0
+        displayName: gitversion/setup
+        inputs:
+          versionSpec: 5.x
+          includePrerelease: true
+
+      - task: gittools.gittools.execute-gitversion-task.gitversion/execute@0
+        displayName: gitversion/execute
+        inputs:
+          updateAssemblyInfo: true
+
       - task: DotNetCoreCLI@2
         displayName: Publish Web API
         inputs:

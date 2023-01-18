@@ -7,7 +7,7 @@
 		<UserSecretsId>223d3beb-62b9-4571-b93d-d529c606b0ed</UserSecretsId>
 		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
 		<DisableImplicitNamespaceImports>true</DisableImplicitNamespaceImports>
-		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	</PropertyGroup>
 
 	<PropertyGroup>

@@ -30,16 +30,6 @@ jobs:
           command: restore
           projects: 'Sources/**/*.csproj'
 
-      - task: DotNetCoreCLI@2
-        displayName: Publish Web API
-        inputs:
-          command: publish
-          publishWebProjects: false
-          projects: 'Sources/Application/Mmu.DrMuellersExampleApp.csproj'
-          arguments: '--configuration $(BuildConfiguration) --output $(PublishPath) /p:DeleteExistingFiles=True'
-          zipAfterPublish: false
-          modifyOutputPath: false
-
       - task: gittools.gittools.setup-gitversion-task.gitversion/setup@0
         displayName: gitversion/setup
         inputs:
@@ -50,6 +40,17 @@ jobs:
         displayName: gitversion/execute
         inputs:
           updateAssemblyInfo: true
+
+      - task: DotNetCoreCLI@2
+        displayName: Publish Web API
+        inputs:
+          command: publish
+          publishWebProjects: false
+          projects: 'Sources/Application/Mmu.DrMuellersExampleApp.csproj'
+          arguments: '--configuration $(BuildConfiguration) --output $(PublishPath) /p:DeleteExistingFiles=True'
+          zipAfterPublish: false
+          modifyOutputPath: false
+
 
       - task: qetza.replacetokens.replacetokens-task.replacetokens@5
         displayName: 'Replace tokens in appsettings.json'

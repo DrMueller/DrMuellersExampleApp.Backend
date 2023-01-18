@@ -15,7 +15,7 @@ pool:
 variables:
 - group: DrMuellersExampleApp-Common
 - group: DrMuellersExampleApp-Backend-Secrets
-- group: DrMuellersExampleApp-Backend
+- group: DrMuellersExampleApp-Backend-Production
 
 stages:
   - stage: Production

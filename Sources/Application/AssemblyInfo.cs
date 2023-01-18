@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // In SDK-style projects such as this one, several assembly attributes that were historically
@@ -15,3 +16,6 @@ using System.Runtime.InteropServices;
 // The following GUID is for the ID of the typelib if this project is exposed to COM.
 
 [assembly: Guid("f2bf590b-9281-494d-9b92-7ac802ebc88c")]
+[assembly: AssemblyTitle("Mmu.DrMuellersExampleApp")]
+[assembly: AssemblyDescription("Mmu.DrMuellersExampleApp")]
+[assembly: AssemblyCompany("DrMueller")]

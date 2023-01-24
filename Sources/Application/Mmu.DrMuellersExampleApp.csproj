@@ -16,7 +16,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Domain\Areas\**" />
+		<AdditionalFiles Include=".refrules" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Domain\Areas\**" />
 	  <Content Remove="Domain\Areas\**" />
 	  <EmbeddedResource Remove="Domain\Areas\**" />
 	  <None Remove="Domain\Areas\**" />
@@ -52,6 +55,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+		<PackageReference Include="ReferenceCopAnalyzer" Version="0.3.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 		<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
 		<PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />

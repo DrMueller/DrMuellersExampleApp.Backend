@@ -1,0 +1,20 @@
+﻿# Allow any class in any namespace to reference System or any deeper namespace
+* System
+* System.*
+* JetBrains.*
+* Newtonsoft.*
+* Lamar
+* Lamar.*
+* Microsoft.*
+* MediatR
+* MediatR.*
+
+Mmu.DrMuellersExampleApp *
+Mmu.DrMuellersExampleApp.* Mmu.DrMuellersExampleApp.CrossCutting.*
+Mmu.DrMuellersExampleApp.Web.* Mmu.DrMuellersExampleApp.Application.*
+Mmu.DrMuellersExampleApp.Web.* Mmu.DrMuellersExampleApp.Web.*
+Mmu.DrMuellersExampleApp.Domain.* Mmu.DrMuellersExampleApp.Domain.*
+Mmu.DrMuellersExampleApp.Application.* Mmu.DrMuellersExampleApp.Domain.*
+Mmu.DrMuellersExampleApp.Application.* Mmu.DrMuellersExampleApp.Application.*
+Mmu.DrMuellersExampleApp.CrossCutting.* Mmu.DrMuellersExampleApp.CrossCutting.*
+

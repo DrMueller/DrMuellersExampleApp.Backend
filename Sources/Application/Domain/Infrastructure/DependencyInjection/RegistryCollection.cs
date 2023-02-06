@@ -11,10 +11,9 @@ namespace Mmu.DrMuellersExampleApp.Domain.Infrastructure.DependencyInjection
             Scan(scanner =>
             {
                 scanner.AssemblyContainingType< RegistryCollection>();
-                ExcludeAggregates(scanner!);
+                ExcludeAggregates(scanner);
                 scanner.WithDefaultConventions();
             });
- 
         }
 
         private static void ExcludeAggregates(IAssemblyScanner scanner)

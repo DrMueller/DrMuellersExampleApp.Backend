@@ -1,4 +1,6 @@
-﻿using Lamar;
+﻿using System.Diagnostics;
+using Lamar;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Models;
 using Mmu.DrMuellersExampleApp.Web.Infrastructure.Security;
@@ -17,6 +19,8 @@ internal static class ServiceInitialization
             });
 
         SecurityInitialization.ConfigureAuthentication(services, configuration);
+
+        services.AddHealthChecks();
         services.AddApplicationInsightsTelemetry();
         services.AddControllers();
 

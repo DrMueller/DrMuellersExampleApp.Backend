@@ -1,4 +1,5 @@
-﻿using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Models;
+﻿using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Mmu.DrMuellersExampleApp.CrossCutting.Services.Settings.Provisioning.Models;
 using Mmu.DrMuellersExampleApp.Web.Infrastructure.ExceptionHandling.Initialization;
 using Mmu.DrMuellersExampleApp.Web.Infrastructure.Output;
 
@@ -26,6 +27,13 @@ internal static class AppInitialization
         app.UseAuthentication();
         app.UseAuthorization();
         app.UseEndpoints(
-            endpoints => { endpoints.MapControllers(); });
+            endpoints =>
+            {
+                endpoints.MapHealthChecks("/api/hc", new HealthCheckOptions
+                {
+                    Predicate = _ => true
+                });
+                endpoints.MapControllers();
+            });
     }
 }
